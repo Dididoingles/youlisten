@@ -1,5 +1,6 @@
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     * {
@@ -349,37 +350,145 @@
 
     /* ===== MOBILE OPTIMIZATIONS ===== */
     
-    /* Tablet and mobile */
     @media (max-width: 768px) {
+      body {
+        font-size: 16px;
+      }
+      
       .container {
-        padding: 12px;
+        padding: 8px;
       }
       
       .header {
-        padding: 20px 12px 12px;
+        padding: 15px 10px 10px;
       }
       
       h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
       }
       
       .subtitle {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
       }
       
       .lesson-grid {
         grid-template-columns: 1fr;
-        gap: 16px;
-      }
-      
-      .card-inner {
-        padding: 12px;
         gap: 12px;
       }
       
+      .lesson-card {
+        border-radius: 16px;
+      }
+      
+      .card-inner {
+        padding: 14px;
+        gap: 14px;
+      }
+      
       .thumbnail-wrapper {
-        width: 100px;
-        height: 75px;
+        width: 110px;
+        height: 80px;
+        border-radius: 12px;
+      }
+      
+      .lesson-title {
+        font-size: 1rem;
+        line-height: 1.4;
+      }
+      
+      .lesson-description {
+        font-size: 0.8rem;
+      }
+      
+      .lesson-meta {
+        font-size: 0.75rem;
+        gap: 15px;
+        margin-top: 6px;
+      }
+      
+      #hintBox {
+        right: auto !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        top: auto !important;
+        bottom: 15px !important;
+        max-width: 85% !important;
+        font-size: 0.75rem !important;
+        padding: 14px 18px !important;
+        z-index: 1000 !important;
+        border-left-width: 4px !important;
+      }
+      
+      #hintBox span {
+        font-size: 1.4rem !important;
+        padding: 4px 6px !important;
+        top: 6px !important;
+        right: 8px !important;
+      }
+      
+      .player-container {
+        padding: 0;
+      }
+      
+      .back-btn {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+        margin-bottom: 16px;
+        margin-top: 5px;
+      }
+      
+      .video-wrapper {
+        border-radius: 16px;
+        margin-bottom: 20px;
+      }
+      
+      .exercise-text {
+        padding: 18px 14px;
+        line-height: 2.2;
+        font-size: 0.95rem;
+        border-radius: 16px;
+      }
+      
+      .blank-input {
+        width: 110px;
+        padding: 8px 10px;
+        font-size: 0.85rem;
+        margin: 4px 3px;
+        border-radius: 10px;
+      }
+      
+      .action-buttons {
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+      
+      .btn-primary, .btn-secondary {
+        padding: 14px 20px;
+        font-size: 1rem;
+        width: 100%;
+        border-radius: 50px;
+      }
+      
+      #current-title {
+        font-size: 1.2rem !important;
+        text-align: center;
+      }
+      
+      .cinema-decor {
+        font-size: 1.8rem;
+        opacity: 0.2;
+      }
+      .pop-left { top: auto; bottom: 10px; left: 5px; }
+      .pop-right { top: auto; bottom: 20px; right: 5px; }
+      .pop-bottom { display: none; }
+    }
+    
+    @media (max-width: 480px) {
+      .thumbnail-wrapper {
+        width: 90px;
+        height: 65px;
       }
       
       .lesson-title {
@@ -390,97 +499,33 @@
         font-size: 0.7rem;
       }
       
-      /* Hint box - bottom center on mobile */
-      #hintBox {
-        right: auto !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        top: auto !important;
-        bottom: 20px !important;
-        max-width: 280px !important;
-        font-size: 0.7rem !important;
-        padding: 12px 16px !important;
-        z-index: 1000 !important;
-      }
-      
-      .player-container {
-        padding: 0 4px;
-      }
-      
-      .back-btn {
-        padding: 8px 18px;
+      .blank-input {
+        width: 95px;
+        padding: 7px 8px;
         font-size: 0.8rem;
-        margin-bottom: 20px;
       }
       
       .exercise-text {
-        padding: 20px 16px;
         line-height: 2;
         font-size: 0.9rem;
-        overflow-x: auto;
-      }
-      
-      .blank-input {
-        width: 100px;
-        padding: 4px 8px;
-        font-size: 0.8rem;
-        margin: 2px;
-      }
-      
-      .action-buttons {
-        flex-direction: column;
-        gap: 12px;
-        margin-top: 25px;
-      }
-      
-      .btn-primary, .btn-secondary {
-        padding: 10px 20px;
-        font-size: 0.85rem;
-        width: 100%;
-      }
-      
-      #current-title {
-        font-size: 1.2rem !important;
-        text-align: center;
-      }
-      
-      .cinema-decor {
-        font-size: 2rem;
-        opacity: 0.15;
-      }
-      .pop-left { top: auto; bottom: 10px; left: 5px; }
-      .pop-right { top: auto; bottom: 20px; right: 5px; }
-      .pop-bottom { display: none; }
-    }
-    
-    /* Small phones (under 480px) */
-    @media (max-width: 480px) {
-      .thumbnail-wrapper {
-        width: 80px;
-        height: 60px;
-      }
-      
-      .blank-input {
-        width: 85px;
-        font-size: 0.7rem;
-      }
-      
-      .exercise-text {
-        line-height: 1.8;
-        font-size: 0.85rem;
         word-break: break-word;
       }
       
       .lesson-meta {
         flex-wrap: wrap;
-        gap: 8px;
+        gap: 10px;
       }
       
       #hintBox {
         max-width: 90% !important;
         bottom: 10px !important;
-        font-size: 0.65rem !important;
-        padding: 10px 14px !important;
+        font-size: 0.7rem !important;
+        padding: 12px 16px !important;
+      }
+      
+      .btn-primary, .btn-secondary {
+        padding: 12px 16px;
+        font-size: 0.9rem;
       }
     }
   </style>
