@@ -1,0 +1,543 @@
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-red: #c20000;
+      --bg-dark: #0a0a0a;
+      --bg-card: #141414;
+      --bg-card-hover: #1e1e1e;
+      --text-primary: #ffffff;
+      --text-secondary: #a0a0a0;
+      --border: #2a2a2a;
+      --transition-fast: 0.2s ease;
+      --transition-slow: 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0a0a0a 0%, #0f0f0f 100%);
+      color: var(--text-primary);
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+
+    .cinema-decor {
+      position: fixed;
+      pointer-events: none;
+      z-index: 999;
+      font-size: 3rem;
+      animation: float 6s infinite ease-in-out;
+      opacity: 0.3;
+    }
+    .pop-left { top: 15%; left: 2%; }
+    .pop-right { top: 20%; right: 2%; }
+    .pop-bottom { bottom: 10%; left: 5%; animation-delay: 2s; }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(-5deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .header {
+      text-align: center;
+      padding: 40px 20px 20px;
+      animation: fadeInDown 0.8s;
+    }
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary-red) 0%, #c20000 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.02em;
+    }
+    .subtitle {
+      color: var(--text-secondary);
+      margin-top: 10px;
+      font-size: 1rem;
+    }
+    .instagram-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.05);
+      padding: 8px 16px;
+      border-radius: 40px;
+      margin-top: 15px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: 0.2s;
+    }
+    .instagram-badge:hover {
+      background: rgba(255,255,255,0.1);
+      color: var(--primary-red);
+    }
+
+    #welcome-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      transition: opacity 1s;
+    }
+    .welcome-content {
+      text-align: center;
+      animation: pulse 1.5s ease infinite;
+    }
+    .welcome-content h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, var(--primary-red), #ff6b6b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .welcome-content p {
+      color: var(--text-secondary);
+      font-size: 1.2rem;
+    }
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 3px solid var(--border);
+      border-top-color: var(--primary-red);
+      border-radius: 50%;
+      margin: 30px auto 0;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.9; transform: scale(1.02); }
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 24px;
+      animation: fadeInUp 0.8s;
+    }
+    .lesson-card {
+      background: var(--bg-card);
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: 1px solid var(--border);
+    }
+    .lesson-card:hover {
+      transform: translateY(-5px);
+      background: var(--bg-card-hover);
+      border-color: var(--primary-red);
+    }
+    .card-inner {
+      display: flex;
+      padding: 16px;
+      gap: 16px;
+    }
+    .thumbnail-wrapper {
+      flex-shrink: 0;
+      width: 120px;
+      height: 90px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #2a2a2a;
+    }
+    .thumbnail-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .card-content {
+      flex: 1;
+      min-width: 0;
+    }
+    .lesson-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--text-primary);
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    .lesson-description {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      margin-bottom: 8px;
+    }
+    .lesson-meta {
+      display: flex;
+      gap: 12px;
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+    }
+
+    .player-container {
+      max-width: 900px;
+      margin: 0 auto;
+      animation: fadeInUp 0.6s;
+    }
+    .back-btn {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 40px;
+      padding: 10px 24px;
+      color: var(--text-primary);
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 500;
+      margin-bottom: 30px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .back-btn:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: var(--primary-red);
+    }
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 30px;
+      background: #000;
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .exercise-text {
+      background: var(--bg-card);
+      border-radius: 20px;
+      padding: 30px;
+      line-height: 2.5;
+      font-size: 1.05rem;
+      border: 1px solid var(--border);
+      margin: 20px 0;
+    }
+    .blank-input {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 6px 12px;
+      width: 130px;
+      text-align: center;
+      font-family: 'Poppins', monospace;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+    .blank-input:focus {
+      outline: none;
+      border-color: var(--primary-red);
+      background: rgba(194,0,0,0.1);
+    }
+    .blank-input.correct {
+      border-color: #28a745;
+      background: rgba(40,167,69,0.1);
+    }
+    .blank-input.incorrect {
+      border-color: var(--primary-red);
+      background: rgba(194,0,0,0.1);
+    }
+    .action-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+    .btn-primary {
+      background: var(--primary-red);
+      border: none;
+      padding: 12px 32px;
+      border-radius: 40px;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.1);
+    }
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid var(--border);
+      padding: 12px 32px;
+      border-radius: 40px;
+      color: var(--text-primary);
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .btn-secondary:hover {
+      border-color: var(--primary-red);
+    }
+
+    .loader-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1002;
+      visibility: hidden;
+      opacity: 0;
+      transition: all 0.3s;
+    }
+    .loader-overlay.active {
+      visibility: visible;
+      opacity: 1;
+    }
+    .spinner-large {
+      width: 60px;
+      height: 60px;
+      border: 4px solid var(--border);
+      border-top-color: var(--primary-red);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 20px;
+    }
+
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+<div id="welcome-screen">
+  <div class="welcome-content">
+    <h2>🎧</h2>
+    <p>@dicarvalho.prof</p>
+    <div class="loading-spinner"></div>
+  </div>
+</div>
+
+<div class="cinema-decor pop-left">🍿</div>
+<div class="cinema-decor pop-right">🎬</div>
+<div class="cinema-decor pop-bottom">🎧</div>
+
+<div class="container">
+  <div class="header">
+    <h1>YouListen</h1>
+    <div class="subtitle">Pratique seu Inglês com cenas curtinhas do Youtube</div>
+    <a href="https://instagram.com/dicarvalho.prof" target="_blank" class="instagram-badge">
+      📷 Siga @dicarvalho.prof
+    </a>
+  </div>
+
+  <div id="menu-view">
+    <div id="lesson-grid" class="lesson-grid">Loading lessons...</div>
+  </div>
+
+  <div id="player-view" class="player-container hidden">
+    <button class="back-btn" onclick="backToMenu()">← back to gallery</button>
+    <div class="video-wrapper">
+      <iframe id="yt-player" allowfullscreen></iframe>
+    </div>
+    <h2 id="current-title" style="color: var(--primary-red); font-size: 1.5rem; margin-bottom: 15px;"></h2>
+    <div id="exercise-text" class="exercise-text"></div>
+    <div class="action-buttons">
+      <button class="btn-primary" onclick="checkAnswers()">✓ Check Answers</button>
+      <button class="btn-secondary" onclick="resetTest()">⟳ Reset</button>
+    </div>
+  </div>
+</div>
+
+<div id="loader" class="loader-overlay">
+  <div class="loader-content">
+    <div class="spinner-large"></div>
+    <p>loading lesson...</p>
+  </div>
+</div>
+
+<script>
+  var lessons = [];
+  var API_URL = 'https://script.google.com/macros/s/AKfycbwIOrPyYibx0j0ZY5mcUAPJS2nSHrhjdRTE8IlYDCNyU1oTawcsKhtHpHYEZjTzPWc_qQ/exec?action=getLessons';
+  
+  setTimeout(function() {
+    var welcome = document.getElementById('welcome-screen');
+    welcome.style.opacity = '0';
+    setTimeout(function() {
+      welcome.style.display = 'none';
+    }, 1000);
+  }, 1500);
+
+  window.onload = function() {
+    fetch(API_URL)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(result) {
+        if (result.success) {
+          lessons = result.data;
+          renderMenu();
+        } else {
+          throw new Error(result.error);
+        }
+      })
+      .catch(function(error) {
+        console.error(error);
+        document.getElementById('lesson-grid').innerHTML = '<p style="text-align:center;color:red;">Error loading lessons.<br>' + error.message + '</p>';
+      });
+  };
+
+  function renderMenu() {
+    var grid = document.getElementById('lesson-grid');
+    if (!lessons.length) {
+      grid.innerHTML = '<p style="text-align:center;color:var(--text-secondary);">No lessons found. Check your Sheet.</p>';
+      return;
+    }
+    
+    var html = '';
+    for (var i = 0; i < lessons.length; i++) {
+      var lesson = lessons[i];
+      html += '<div class="lesson-card" onclick="loadLesson(' + lesson.id + ')">';
+      html += '  <div class="card-inner">';
+      html += '    <div class="thumbnail-wrapper">';
+      html += '      <img class="thumbnail-img" src="' + lesson.thumbnail + '" loading="lazy" onerror="this.src=\'https://via.placeholder.com/120x90?text=No+Video\'">';
+      html += '    </div>';
+      html += '    <div class="card-content">';
+      html += '      <div class="lesson-title">' + escapeHtml(lesson.videoTitle || lesson.title) + '</div>';
+      html += '      <div class="lesson-description">' + escapeHtml(lesson.description || 'No description') + '</div>';
+      html += '      <div class="lesson-meta">';
+      html += '        <span>⏱️ ' + (lesson.duration || '0:00') + '</span>';
+      html += '        <span>📺 ' + escapeHtml(lesson.channelTitle || 'YouTube') + '</span>';
+      html += '      </div>';
+      html += '    </div>';
+      html += '  </div>';
+      html += '</div>';
+    }
+    grid.innerHTML = html;
+  }
+
+  function loadLesson(id) {
+    showLoader(true);
+    var lesson = null;
+    for (var i = 0; i < lessons.length; i++) {
+      if (lessons[i].id == id) {
+        lesson = lessons[i];
+        break;
+      }
+    }
+    
+    if (!lesson) {
+      showLoader(false);
+      return;
+    }
+    
+    document.getElementById('menu-view').classList.add('hidden');
+    document.getElementById('player-view').classList.remove('hidden');
+    document.getElementById('current-title').innerText = lesson.title;
+    document.getElementById('yt-player').src = "https://www.youtube.com/embed/" + lesson.ytId + "?rel=0&autoplay=0";
+    
+    var textWithInputs = lesson.text.replace(/\[(.*?)\]/g, function(match, answer) {
+      return '<input type="text" class="blank-input" data-answer="' + escapeHtml(answer) + '" placeholder="...">';
+    });
+    document.getElementById('exercise-text').innerHTML = textWithInputs;
+    
+    setTimeout(function() { showLoader(false); }, 500);
+  }
+
+  function backToMenu() {
+    document.getElementById('yt-player').src = '';
+    document.getElementById('menu-view').classList.remove('hidden');
+    document.getElementById('player-view').classList.add('hidden');
+  }
+
+  function checkAnswers() {
+    var inputs = document.querySelectorAll('.blank-input');
+    var correctCount = 0;
+    
+    for (var i = 0; i < inputs.length; i++) {
+      var input = inputs[i];
+      var userVal = input.value.toLowerCase().trim();
+      var correctVal = input.getAttribute('data-answer').toLowerCase().trim();
+      if (userVal !== "") {
+        var isCorrect = (userVal === correctVal);
+        if (isCorrect) {
+          input.classList.add('correct');
+          input.classList.remove('incorrect');
+          correctCount++;
+        } else {
+          input.classList.add('incorrect');
+          input.classList.remove('correct');
+        }
+      }
+    }
+  }
+
+  function resetTest() {
+    var inputs = document.querySelectorAll('.blank-input');
+    for (var i = 0; i < inputs.length; i++) {
+      inputs[i].value = '';
+      inputs[i].classList.remove('correct', 'incorrect');
+    }
+  }
+
+  function showLoader(show) {
+    var loader = document.getElementById('loader');
+    if (show) {
+      loader.classList.add('active');
+    } else {
+      loader.classList.remove('active');
+    }
+  }
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+</script>
+</body>
+</html>
