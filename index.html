@@ -346,6 +346,143 @@
     }
 
     .hidden { display: none !important; }
+
+    /* ===== MOBILE OPTIMIZATIONS ===== */
+    
+    /* Tablet and mobile */
+    @media (max-width: 768px) {
+      .container {
+        padding: 12px;
+      }
+      
+      .header {
+        padding: 20px 12px 12px;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .subtitle {
+        font-size: 0.85rem;
+      }
+      
+      .lesson-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      
+      .card-inner {
+        padding: 12px;
+        gap: 12px;
+      }
+      
+      .thumbnail-wrapper {
+        width: 100px;
+        height: 75px;
+      }
+      
+      .lesson-title {
+        font-size: 0.9rem;
+      }
+      
+      .lesson-description {
+        font-size: 0.7rem;
+      }
+      
+      /* Hint box - bottom center on mobile */
+      #hintBox {
+        right: auto !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        top: auto !important;
+        bottom: 20px !important;
+        max-width: 280px !important;
+        font-size: 0.7rem !important;
+        padding: 12px 16px !important;
+        z-index: 1000 !important;
+      }
+      
+      .player-container {
+        padding: 0 4px;
+      }
+      
+      .back-btn {
+        padding: 8px 18px;
+        font-size: 0.8rem;
+        margin-bottom: 20px;
+      }
+      
+      .exercise-text {
+        padding: 20px 16px;
+        line-height: 2;
+        font-size: 0.9rem;
+        overflow-x: auto;
+      }
+      
+      .blank-input {
+        width: 100px;
+        padding: 4px 8px;
+        font-size: 0.8rem;
+        margin: 2px;
+      }
+      
+      .action-buttons {
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 25px;
+      }
+      
+      .btn-primary, .btn-secondary {
+        padding: 10px 20px;
+        font-size: 0.85rem;
+        width: 100%;
+      }
+      
+      #current-title {
+        font-size: 1.2rem !important;
+        text-align: center;
+      }
+      
+      .cinema-decor {
+        font-size: 2rem;
+        opacity: 0.15;
+      }
+      .pop-left { top: auto; bottom: 10px; left: 5px; }
+      .pop-right { top: auto; bottom: 20px; right: 5px; }
+      .pop-bottom { display: none; }
+    }
+    
+    /* Small phones (under 480px) */
+    @media (max-width: 480px) {
+      .thumbnail-wrapper {
+        width: 80px;
+        height: 60px;
+      }
+      
+      .blank-input {
+        width: 85px;
+        font-size: 0.7rem;
+      }
+      
+      .exercise-text {
+        line-height: 1.8;
+        font-size: 0.85rem;
+        word-break: break-word;
+      }
+      
+      .lesson-meta {
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      
+      #hintBox {
+        max-width: 90% !important;
+        bottom: 10px !important;
+        font-size: 0.65rem !important;
+        padding: 10px 14px !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -368,7 +505,7 @@
     <div class="subtitle">Pratique seu Inglês com cenas curtinhas do Youtube</div>
     <div style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 8px;">
     💡 Clique em qualquer card → assista ao vídeo → complete as lacunas
-  </div>
+    </div>
     <a href="https://instagram.com/dicarvalho.prof" target="_blank" class="instagram-badge">
       📷 Siga @dicarvalho.prof
     </a>
@@ -391,12 +528,14 @@
     </div>
   </div>
 </div>
+
 <!-- Floating Hint Box (Closable) -->
 <div style="position: fixed; right: 20px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); border-left: 3px solid var(--primary-red); border-radius: 12px; padding: 16px 20px; max-width: 260px; z-index: 100; font-size: 0.8rem; line-height: 1.4; box-shadow: 0 4px 20px rgba(0,0,0,0.3);" id="hintBox">
   <span onclick="document.getElementById('hintBox').style.display='none'" style="position: absolute; top: 8px; right: 12px; cursor: pointer; color: var(--text-secondary); font-size: 1.2rem; font-weight: bold;">&times;</span>
   💡 <strong>Dica</strong><br>
   Assista ao vídeo completo uma vez e depois assista novamente para preencher as lacunas. 😉
 </div>
+
 <div id="loader" class="loader-overlay">
   <div class="loader-content">
     <div class="spinner-large"></div>
