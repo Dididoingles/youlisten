@@ -5,37 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
   <meta name="theme-color" content="#0a0a0a">
   
-  <!-- SEO & Meta -->
-  <title>YouListen — Pratique inglês com cenas do YouTube</title>
+  <title>YouListen | Pratique inglês com cenas do YouTube</title>
   <meta name="description" content="Aprenda inglês com cenas curtas do YouTube. Assista, ouça e complete as lacunas para praticar listening e vocabulário.">
   <meta name="author" content="@dicarvalho.prof">
-  <meta name="keywords" content="inglês, listening, youtube, aprender inglês, exercícios">
   
-  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="YouListen — Pratique inglês com cenas do YouTube">
   <meta property="og:description" content="Aprenda inglês com cenas curtas do YouTube. Assista, ouça e complete as lacunas.">
   <meta property="og:image" content="metatisten.png">
   <meta property="og:url" content="https://dididoingles.github.io/youlisten/">
-  
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="YouListen — Pratique inglês com cenas do YouTube">
-  <meta name="twitter:description" content="Aprenda inglês com cenas curtas do YouTube.">
   <meta name="twitter:image" content="metatisten.png">
   
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favilisten.png">
+  <link rel="icon" type="image/png" href="https://dididoingles.github.io/youlisten/favilisten.png">
   <link rel="apple-touch-icon" href="favilisten.png">
   
-  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <style>
-    /* ============ RESET & TOKENS ============ */
     *, *::before, *::after {
       margin: 0;
       padding: 0;
@@ -43,55 +33,39 @@
     }
 
     :root {
-      /* Color system */
-      --red-50:  #fff1f1;
-      --red-100: #ffdcdc;
       --red-400: #ff4d4d;
       --red-500: #e10600;
-      --red-600: #c20000;
-      --red-700: #970000;
-      
-      --neutral-0:   #ffffff;
-      --neutral-50:  #f7f7f8;
-      --neutral-100: #ececef;
-      --neutral-200: #d4d4d8;
-      --neutral-400: #8a8a93;
-      --neutral-600: #4a4a52;
       --neutral-800: #1c1c1f;
       --neutral-850: #141416;
       --neutral-900: #0d0d0f;
       --neutral-950: #08080a;
       
-      /* Semantic */
-      --bg:          var(--neutral-950);
-      --surface-1:   var(--neutral-900);
-      --surface-2:   var(--neutral-850);
-      --surface-3:   var(--neutral-800);
-      --border:      rgba(255, 255, 255, 0.08);
+      --bg:            var(--neutral-950);
+      --surface-1:     var(--neutral-900);
+      --surface-2:     var(--neutral-850);
+      --surface-3:     var(--neutral-800);
+      --border:        rgba(255, 255, 255, 0.08);
       --border-strong: rgba(255, 255, 255, 0.16);
-      --text:        #f4f4f5;
-      --text-muted:  #a1a1aa;
-      --text-faint:  #71717a;
-      --accent:      var(--red-500);
-      --accent-hover: var(--red-400);
-      --success:     #22c55e;
-      --danger:      var(--red-500);
+      --text:          #f4f4f5;
+      --text-muted:    #a1a1aa;
+      --text-faint:    #71717a;
+      --accent:        var(--red-500);
+      --accent-hover:  var(--red-400);
+      --success:       #22c55e;
+      --danger:        var(--red-500);
       
-      /* Layout */
-      --radius-sm: 8px;
       --radius:    12px;
       --radius-lg: 18px;
       --radius-xl: 24px;
       --container: 1280px;
       
-      /* Motion */
-      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+      --ease:     cubic-bezier(0.4, 0, 0.2, 1);
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
       
-      /* Shadows */
-      --shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
-      --shadow: 0 8px 24px rgba(0,0,0,0.4);
+      --shadow:    0 8px 24px rgba(0,0,0,0.4);
       --shadow-lg: 0 24px 60px rgba(0,0,0,0.5);
+
+      --header-h: 72px;
     }
 
     html { -webkit-text-size-adjust: 100%; }
@@ -106,7 +80,6 @@
       overflow-x: hidden;
     }
 
-    /* Subtle ambient background */
     body::before {
       content: '';
       position: fixed;
@@ -123,10 +96,9 @@
     img { display: block; max-width: 100%; }
     input { font-family: inherit; }
 
-    /* ============ TYPOGRAPHY ============ */
     h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02em; line-height: 1.2; }
 
-    /* ============ WELCOME SCREEN ============ */
+    /* ============ WELCOME ============ */
     #welcome-screen {
       position: fixed;
       inset: 0;
@@ -136,10 +108,7 @@
       z-index: 9999;
       transition: opacity 0.5s var(--ease), visibility 0.5s;
     }
-    #welcome-screen.is-hidden {
-      opacity: 0;
-      visibility: hidden;
-    }
+    #welcome-screen.is-hidden { opacity: 0; visibility: hidden; }
     .welcome-inner {
       display: flex;
       flex-direction: column;
@@ -159,11 +128,7 @@
       box-shadow: 0 12px 32px rgba(225,6,0,0.4);
       animation: pulse-glow 2s ease-in-out infinite;
     }
-    .welcome-inner p {
-      font-size: 0.875rem;
-      color: var(--text-muted);
-      letter-spacing: 0.05em;
-    }
+    .welcome-inner p { font-size: 0.875rem; color: var(--text-muted); letter-spacing: 0.05em; }
     .loading-bar {
       width: 120px;
       height: 2px;
@@ -180,10 +145,7 @@
       border-radius: 2px;
       animation: loading 1.2s ease-in-out infinite;
     }
-    @keyframes loading {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(350%); }
-    }
+    @keyframes loading { 0% { transform: translateX(-100%); } 100% { transform: translateX(350%); } }
     @keyframes pulse-glow {
       0%, 100% { box-shadow: 0 12px 32px rgba(225,6,0,0.4); }
       50% { box-shadow: 0 12px 48px rgba(225,6,0,0.7); }
@@ -249,11 +211,7 @@
       letter-spacing: 0.02em;
       font-family: 'Inter', sans-serif;
     }
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+    .header-actions { display: flex; align-items: center; gap: 8px; }
     .icon-btn {
       width: 40px;
       height: 40px;
@@ -273,11 +231,8 @@
     }
     .icon-btn.accent { color: var(--accent); }
 
-    /* ============ HERO (menu) ============ */
-    .hero {
-      padding: 48px 0 32px;
-      text-align: center;
-    }
+    /* ============ HERO ============ */
+    .hero { padding: 48px 0 32px; text-align: center; }
     .hero h1 {
       font-size: clamp(2rem, 6vw, 3.25rem);
       font-weight: 700;
@@ -310,14 +265,8 @@
       border: 1px solid var(--border);
       font-size: 0.8rem;
       color: var(--text-muted);
-      transition: all 0.2s var(--ease);
     }
     .badge i { color: var(--accent); font-size: 0.75rem; }
-    .badge.clickable:hover {
-      color: var(--text);
-      border-color: var(--border-strong);
-      background: var(--surface-3);
-    }
 
     /* ============ LESSON GRID ============ */
     .section-head {
@@ -359,16 +308,6 @@
       transition: all 0.25s var(--ease);
       display: flex;
       flex-direction: column;
-      position: relative;
-    }
-    .lesson-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      pointer-events: none;
-      box-shadow: 0 0 0 0 var(--accent);
-      transition: box-shadow 0.25s var(--ease);
     }
     .lesson-card:hover {
       background: var(--surface-2);
@@ -376,10 +315,6 @@
       transform: translateY(-3px);
       box-shadow: var(--shadow);
     }
-    .lesson-card:hover::after {
-      box-shadow: inset 0 0 0 1px rgba(225,6,0,0.35);
-    }
-    .lesson-card:active { transform: translateY(-1px); }
 
     .card-thumb {
       position: relative;
@@ -437,7 +372,6 @@
       font-weight: 600;
       padding: 3px 8px;
       border-radius: 6px;
-      letter-spacing: 0.02em;
     }
 
     .card-body {
@@ -476,7 +410,6 @@
       font-size: 0.72rem;
       color: var(--text-faint);
     }
-    .card-footer i { color: var(--text-faint); }
     .card-footer span { display: inline-flex; align-items: center; gap: 5px; }
 
     /* ============ PLAYER VIEW ============ */
@@ -491,10 +424,26 @@
 
     .player-layout {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 24px;
-      max-width: 980px;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: 28px;
+      align-items: start;
+      max-width: 1200px;
       margin: 0 auto;
+    }
+
+    .player-left {
+      display: flex;
+      flex-direction: column;
+      position: sticky;
+      top: calc(var(--header-h) + 20px);
+      align-self: start;
+      min-width: 0;
+    }
+
+    .player-right {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
     }
 
     .back-link {
@@ -508,15 +457,15 @@
       border-radius: 100px;
       background: var(--surface-2);
       border: 1px solid var(--border);
-      margin-bottom: 20px;
+      margin-bottom: 16px;
       transition: all 0.2s var(--ease);
+      align-self: flex-start;
     }
     .back-link:hover {
       color: var(--text);
       border-color: var(--border-strong);
       background: var(--surface-3);
     }
-    .back-link i { font-size: 0.75rem; }
 
     .video-frame {
       position: relative;
@@ -536,15 +485,50 @@
       border: none;
     }
 
+    /* Container alvo do player principal (IFrame API injeta o iframe aqui) */
+    #yt-player-container {
+      position: absolute;
+      inset: 0;
+    }
+    #yt-player-target,
+    #yt-player-target iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Placeholder para reservar espaço quando o vídeo "sai" no mobile */
+    .video-frame-placeholder {
+      display: none;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--radius-lg);
+      background: var(--surface-2);
+      border: 1px dashed var(--border-strong);
+      color: var(--text-faint);
+      font-size: 0.75rem;
+      place-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+    .video-frame-placeholder i {
+      display: block;
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+      color: var(--text-faint);
+    }
+
     .lesson-info {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       gap: 10px;
-      margin-top: 20px;
+      margin-top: 16px;
     }
     .lesson-info h1 {
-      font-size: clamp(1.2rem, 3vw, 1.6rem);
+      font-size: clamp(1.1rem, 2.2vw, 1.4rem);
       font-weight: 700;
       width: 100%;
       color: var(--text);
@@ -554,7 +538,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 16px;
+      margin-top: 12px;
     }
     .tool-btn {
       display: inline-flex;
@@ -574,7 +558,6 @@
       background: var(--surface-3);
       border-color: var(--border-strong);
     }
-    .tool-btn i { font-size: 0.85rem; }
 
     /* ============ EXERCISE ============ */
     .exercise-panel {
@@ -582,7 +565,6 @@
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       padding: 28px;
-      margin-top: 24px;
     }
     .exercise-panel h3 {
       font-size: 0.75rem;
@@ -612,7 +594,6 @@
       padding: 2px 10px;
       width: 130px;
       text-align: center;
-      font-family: 'Inter', sans-serif;
       font-weight: 600;
       font-size: 0.9em;
       color: var(--text);
@@ -638,12 +619,6 @@
       border-bottom-color: var(--danger);
       background: rgba(225,6,0,0.1);
       color: var(--red-400);
-      animation: shake 0.4s var(--ease);
-    }
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-4px); }
-      75% { transform: translateX(4px); }
     }
 
     .exercise-actions {
@@ -673,7 +648,6 @@
       transform: translateY(-1px);
       box-shadow: 0 6px 20px rgba(225,6,0,0.45);
     }
-    .btn-primary:active { transform: translateY(0); }
     .btn-ghost {
       background: transparent;
       border: 1px solid var(--border-strong);
@@ -682,7 +656,6 @@
     .btn-ghost:hover {
       background: var(--surface-2);
       color: var(--text);
-      border-color: var(--border-strong);
     }
 
     /* ============ MODAL ============ */
@@ -699,10 +672,7 @@
       visibility: hidden;
       transition: opacity 0.25s var(--ease), visibility 0.25s;
     }
-    .modal-overlay.is-open {
-      opacity: 1;
-      visibility: visible;
-    }
+    .modal-overlay.is-open { opacity: 1; visibility: visible; }
     .modal {
       background: var(--surface-2);
       border: 1px solid var(--border-strong);
@@ -717,7 +687,6 @@
       position: relative;
     }
     .modal-overlay.is-open .modal { transform: scale(1); }
-    
     .modal-close {
       position: absolute;
       top: 14px;
@@ -729,10 +698,8 @@
       place-items: center;
       color: var(--text-faint);
       transition: all 0.2s var(--ease);
-      font-size: 0.9rem;
     }
     .modal-close:hover { color: var(--text); background: var(--surface-3); }
-
     .modal-icon {
       width: 56px;
       height: 56px;
@@ -744,18 +711,8 @@
     }
     .modal-icon.accent { background: rgba(225,6,0,0.15); color: var(--accent); }
     .modal-icon.success { background: rgba(34,197,94,0.15); color: var(--success); }
-
-    .modal h3 {
-      font-size: 1.25rem;
-      margin-bottom: 8px;
-      color: var(--text);
-    }
-    .modal p {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-      margin-bottom: 8px;
-    }
+    .modal h3 { font-size: 1.25rem; margin-bottom: 8px; color: var(--text); }
+    .modal p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 8px; }
     .modal-result {
       display: flex;
       align-items: center;
@@ -769,10 +726,8 @@
     .modal-result .hit { color: var(--success); }
     .modal-result .sep { color: var(--text-faint); font-weight: 400; }
     .modal-result .total { color: var(--text-muted); }
-
     .modal-actions { display: flex; gap: 10px; }
     .modal-actions .btn { flex: 1; }
-    .modal-actions .btn-ghost { flex: 1; }
 
     /* ============ SKELETON ============ */
     .skeleton {
@@ -782,22 +737,10 @@
       border-radius: var(--radius);
     }
     @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-    .skeleton-card {
-      height: 300px;
-      border-radius: var(--radius-lg);
-    }
+    .skeleton-card { height: 300px; border-radius: var(--radius-lg); }
 
-    /* ============ UTILITIES ============ */
     .hidden { display: none !important; }
-    .visually-hidden {
-      position: absolute !important;
-      width: 1px; height: 1px;
-      padding: 0; margin: -1px;
-      overflow: hidden; clip: rect(0,0,0,0);
-      white-space: nowrap; border: 0;
-    }
 
-    /* ============ EMPTY / ERROR ============ */
     .state-message {
       grid-column: 1 / -1;
       text-align: center;
@@ -822,28 +765,117 @@
       font-size: 0.8rem;
       color: var(--text-faint);
     }
-    .site-footer a { color: var(--text-muted); transition: color 0.2s; }
+    .site-footer a { color: var(--text-muted); }
     .site-footer a:hover { color: var(--accent); }
 
+    /* ============================================================
+       MINI PLAYER (mobile only, controlado por JS + IFrame API)
+    ============================================================ */
+    #mini-player {
+      display: none;
+      position: fixed;
+      top: calc(var(--header-h) + 8px);
+      right: 12px;
+      width: 220px;
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.12);
+      z-index: 45;
+      transform: translateZ(0);
+      will-change: transform;
+      isolation: isolate;
+      pointer-events: auto;
+    }
+    #mini-player.is-visible {
+      display: flex;
+      flex-direction: column;
+    }
+    .mini-video-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+    }
+    #mini-yt-target,
+    #mini-yt-target iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      pointer-events: none;
+    }
+    .mini-controls {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      padding: 6px;
+      background: rgba(10, 10, 12, 0.95);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .mini-btn {
+      flex: 1;
+      height: 32px;
+      min-width: 32px;
+      border-radius: 6px;
+      display: grid;
+      place-items: center;
+      color: var(--text-muted);
+      background: transparent;
+      font-size: 0.8rem;
+      transition: background 0.15s var(--ease), color 0.15s var(--ease);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .mini-btn:hover,
+    .mini-btn:active {
+      background: var(--surface-3);
+      color: var(--text);
+    }
+    .mini-btn.mini-play {
+      color: var(--accent);
+    }
+    .mini-btn.mini-close-btn {
+      color: var(--text-faint);
+    }
+    .mini-btn.mini-close-btn:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
     /* ============ MEDIA QUERIES ============ */
-    
-    /* Tablet */
+    @media (max-width: 1024px) {
+      .player-layout {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 20px;
+      }
+      .exercise-panel { padding: 22px; }
+      .exercise-text { font-size: 1rem; line-height: 2.2; }
+    }
+
     @media (max-width: 900px) {
       .lesson-grid {
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         gap: 14px;
       }
+      .player-layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .player-left { position: static; }
+      .exercise-panel { margin-top: 4px; }
     }
 
-    /* Mobile */
     @media (max-width: 640px) {
+      :root { --header-h: 64px; }
+      
       .container { padding: 0 16px; }
       
-      .site-header { padding: 14px 0; }
+      .site-header { padding: 12px 0; }
       .brand { font-size: 1.1rem; gap: 10px; }
-      .brand-mark { width: 34px; height: 34px; font-size: 0.9rem; }
-      .brand-text small { font-size: 0.65rem; }
-      .icon-btn { width: 36px; height: 36px; font-size: 0.85rem; }
+      .brand-mark { width: 32px; height: 32px; font-size: 0.85rem; }
+      .brand-text small { font-size: 0.62rem; }
+      .icon-btn { width: 34px; height: 34px; font-size: 0.8rem; }
 
       .hero { padding: 32px 0 24px; }
       .hero h1 { font-size: 1.85rem; }
@@ -864,12 +896,12 @@
       .card-footer { font-size: 0.68rem; padding-top: 10px; }
 
       .player-view { padding: 16px 0 48px; }
-      .back-link { padding: 8px 12px; font-size: 0.8rem; }
+      .back-link { padding: 8px 12px; font-size: 0.8rem; margin-bottom: 12px; }
       
-      .lesson-info { margin-top: 16px; }
-      .lesson-info h1 { font-size: 1.15rem; }
+      .lesson-info { margin-top: 14px; }
+      .lesson-info h1 { font-size: 1.1rem; }
       
-      .player-toolbar { gap: 8px; margin-top: 12px; }
+      .player-toolbar { gap: 8px; margin-top: 10px; }
       .tool-btn { padding: 8px 12px; font-size: 0.78rem; gap: 6px; }
 
       .exercise-panel {
@@ -902,15 +934,26 @@
       .modal-actions .btn { width: 100%; }
 
       .site-footer { padding: 24px 0; font-size: 0.72rem; }
+
+      /* Placeholder aparece quando o vídeo vira mini */
+      body.mini-active .video-frame-placeholder {
+        display: grid;
+      }
+      body.mini-active .video-frame {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
     }
 
     @media (max-width: 380px) {
       .hero h1 { font-size: 1.6rem; }
       .blank-input { width: 85px; }
       .exercise-text { font-size: 0.9rem; line-height: 2; }
+      #mini-player { width: 190px; }
+      .mini-btn { height: 30px; font-size: 0.75rem; }
     }
 
-    /* Reduced motion */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -925,15 +968,38 @@
 <div id="welcome-screen">
   <div class="welcome-inner">
     <div class="welcome-logo"><i class="fa-solid fa-headphones"></i></div>
-    <p>@dicarvalho.prof</p>
+    <p>You.Listen by @dicarvalho.prof</p>
     <div class="loading-bar"></div>
+  </div>
+</div>
+
+<!-- ===== MINI PLAYER (fixo, mobile only, controlado por JS + IFrame API) ===== -->
+<div id="mini-player" aria-hidden="true">
+  <div class="mini-video-wrap">
+    <div id="mini-yt-target"></div>
+  </div>
+  <div class="mini-controls">
+    <button class="mini-btn" onclick="miniSeek(-10)" aria-label="Voltar 10s">
+      <i class="fa-solid fa-rotate-left"></i>
+    </button>
+    <button class="mini-btn mini-play" id="mini-play-btn" onclick="miniTogglePlay()" aria-label="Play/Pause">
+      <i class="fa-solid fa-play"></i>
+    </button>
+    <button class="mini-btn" onclick="miniSeek(10)" aria-label="Avançar 10s">
+      <i class="fa-solid fa-rotate-right"></i>
+    </button>
+    <button class="mini-btn" onclick="miniToggleMute()" aria-label="Mudo">
+      <i class="fa-solid fa-volume-high" id="mini-mute-icon"></i>
+    </button>
+    <button class="mini-btn mini-close-btn" onclick="hideMiniPlayer()" aria-label="Fechar mini player">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
   </div>
 </div>
 
 <!-- ===== APP SHELL ===== -->
 <div class="app-shell">
   
-  <!-- HEADER -->
   <header class="site-header">
     <div class="container">
       <div class="header-row">
@@ -957,8 +1023,8 @@
   <main id="menu-view">
     <div class="container">
       <section class="hero">
-        <h1>Ouça. Complete. Aprenda.</h1>
-        <p>Cenas curtinhas do YouTube para você treinar listening e vocabulário no seu ritmo.</p>
+        <h1>Ouça. Treine. Aprenda.</h1>
+        <p>Cenas curtinhas do YouTube para você treinar o ouvido e o vocabulário.</p>
         <div class="hero-badges">
           <span class="badge"><i class="fa-solid fa-circle-play"></i> Assista ao vídeo</span>
           <span class="badge"><i class="fa-solid fa-pen-to-square"></i> Complete as lacunas</span>
@@ -972,7 +1038,6 @@
       </div>
 
       <div id="lesson-grid" class="lesson-grid">
-        <!-- skeletons -->
         <div class="skeleton skeleton-card"></div>
         <div class="skeleton skeleton-card"></div>
         <div class="skeleton skeleton-card"></div>
@@ -984,17 +1049,25 @@
   <main id="player-view" class="player-view hidden">
     <div class="container">
       <div class="player-layout">
-        <div>
+
+        <div class="player-left">
           <button class="back-link" onclick="backToMenu()">
             <i class="fa-solid fa-arrow-left"></i> Voltar para lições
           </button>
-        </div>
 
-        <div class="video-frame">
-          <iframe id="yt-player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
+          <div class="video-frame" id="video-frame">
+            <div id="yt-player-container">
+              <div id="yt-player-target"></div>
+            </div>
+          </div>
 
-        <div>
+          <div class="video-frame-placeholder" id="video-placeholder">
+            <div>
+              <i class="fa-solid fa-circle-play"></i>
+              Vídeo em miniatura no topo
+            </div>
+          </div>
+
           <div class="lesson-info">
             <h1 id="current-title">—</h1>
           </div>
@@ -1003,11 +1076,10 @@
             <button class="tool-btn" onclick="showHintModal()">
               <i class="fa-solid fa-lightbulb"></i> Como usar
             </button>
-            <button class="tool-btn" onclick="scrollToExercise()">
-              <i class="fa-solid fa-arrow-down"></i> Ir ao exercício
-            </button>
           </div>
+        </div>
 
+        <div class="player-right">
           <div class="exercise-panel">
             <h3><i class="fa-solid fa-headphones"></i> Complete as lacunas</h3>
             <div id="exercise-text" class="exercise-text"></div>
@@ -1021,11 +1093,11 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </main>
 
-  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container">
       Feito com <i class="fa-solid fa-heart" style="color: var(--accent);"></i> por
@@ -1036,7 +1108,7 @@
 </div>
 
 <!-- ===== MODAL: RESULT ===== -->
-<div id="result-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="result-title">
+<div id="result-modal" class="modal-overlay" role="dialog" aria-modal="true">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('result-modal')" aria-label="Fechar">
       <i class="fa-solid fa-xmark"></i>
@@ -1061,35 +1133,49 @@
 </div>
 
 <!-- ===== MODAL: HINT ===== -->
-<div id="hint-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="hint-title">
+<div id="hint-modal" class="modal-overlay" role="dialog" aria-modal="true">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('hint-modal')" aria-label="Fechar">
       <i class="fa-solid fa-xmark"></i>
     </button>
     <div class="modal-icon accent"><i class="fa-solid fa-lightbulb"></i></div>
-    <h3 id="hint-title">Como usar o YouListen</h3>
+    <h3>Como usar o YouListen</h3>
     <p>1. Assista ao vídeo completo uma vez para entender o contexto.</p>
     <p>2. Reproduza novamente e complete as lacunas ouvindo com atenção.</p>
-    <p>3. Clique em <strong>Verificar respostas</strong> para ver o feedback.</p>
+    <p>3. No celular, ao rolar para o exercício o vídeo vira uma miniaturinha no topo — assim você ouve e preenche ao mesmo tempo.</p>
+    <p>4. Clique em <strong>Verificar respostas</strong> para ver o feedback.</p>
     <div class="modal-actions">
       <button class="btn btn-primary" onclick="closeModal('hint-modal')">Entendi</button>
     </div>
   </div>
 </div>
 
+<!-- ===== YOUTUBE IFrame API ===== -->
+<script src="https://www.youtube.com/iframe_api"></script>
+
 <script>
   /* ============================================================
-     STATE & API (lógica intacta)
+     STATE
   ============================================================ */
   var lessons = [];
   var API_URL = 'https://script.google.com/macros/s/AKfycbwIOrPyYibx0j0ZY5mcUAPJS2nSHrhjdRTE8IlYDCNyU1oTawcsKhtHpHYEZjTzPWc_qQ/exec?action=getLessons';
+
+  var currentYtId = null;
+  var mainPlayer = null;     // YT.Player do vídeo grande
+  var miniPlayer = null;     // YT.Player do mini
+  var miniVisible = false;
+  var miniDismissed = false;
+  var scrollTicking = false;
+  var ytApiReady = false;
+  var pendingLessonYtId = null;
+
+  var MINI_BREAKPOINT = 640;
 
   /* ============================================================
      BOOT
   ============================================================ */
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // welcome fade
   setTimeout(function () {
     var welcome = document.getElementById('welcome-screen');
     welcome.classList.add('is-hidden');
@@ -1098,7 +1184,7 @@
 
   window.onload = function () {
     fetch(API_URL)
-      .then(function (response) { return response.json(); })
+      .then(function (r) { return r.json(); })
       .then(function (result) {
         if (result.success) {
           lessons = result.data;
@@ -1112,6 +1198,243 @@
         renderError(error.message);
       });
   };
+
+  /* ============================================================
+     YOUTUBE IFrame API
+  ============================================================ */
+  window.onYouTubeIframeAPIReady = function () {
+    ytApiReady = true;
+    if (pendingLessonYtId) {
+      createMainPlayer(pendingLessonYtId);
+      pendingLessonYtId = null;
+    }
+  };
+
+  function createMainPlayer(ytId) {
+    var container = document.getElementById('yt-player-container');
+    if (!container) return;
+
+    // destrói se existir
+    if (mainPlayer && typeof mainPlayer.destroy === 'function') {
+      try { mainPlayer.destroy(); } catch (e) {}
+      mainPlayer = null;
+    }
+
+    // recria o <div> alvo
+    container.innerHTML = '<div id="yt-player-target"></div>';
+
+    mainPlayer = new YT.Player('yt-player-target', {
+      videoId: ytId,
+      playerVars: {
+        rel: 0,
+        autoplay: 0,
+        playsinline: 1,
+        modestbranding: 1
+      },
+      events: {
+        onReady: function () {}
+      }
+    });
+  }
+
+  function createMiniPlayer(ytId, startSeconds) {
+    if (miniPlayer && typeof miniPlayer.destroy === 'function') {
+      try { miniPlayer.destroy(); } catch (e) {}
+      miniPlayer = null;
+    }
+
+    var target = document.getElementById('mini-yt-target');
+    if (!target) return;
+    target.innerHTML = '<div id="mini-yt-inner"></div>';
+
+    miniPlayer = new YT.Player('mini-yt-inner', {
+      videoId: ytId,
+      playerVars: {
+        rel: 0,
+        autoplay: 1,
+        playsinline: 1,
+        modestbranding: 1,
+        controls: 0,
+        disablekb: 1,
+        fs: 0,
+        iv_load_policy: 3,
+        start: Math.max(0, Math.floor(startSeconds || 0))
+      },
+      events: {
+        onReady: function (e) {
+          e.target.playVideo();
+        },
+        onStateChange: function (e) {
+          updateMiniPlayIcon(e.data);
+        }
+      }
+    });
+  }
+
+  function updateMiniPlayIcon(state) {
+    var btn = document.getElementById('mini-play-btn');
+    if (!btn) return;
+    var icon = btn.querySelector('i');
+    if (!icon) return;
+    if (state === YT.PlayerState.PLAYING) {
+      icon.className = 'fa-solid fa-pause';
+    } else {
+      icon.className = 'fa-solid fa-play';
+    }
+  }
+
+  /* ============================================================
+     MINI PLAYER — controles custom
+  ============================================================ */
+  function miniTogglePlay() {
+    if (!miniPlayer || typeof miniPlayer.getPlayerState !== 'function') return;
+    var state = miniPlayer.getPlayerState();
+    if (state === YT.PlayerState.PLAYING) {
+      miniPlayer.pauseVideo();
+    } else {
+      miniPlayer.playVideo();
+    }
+  }
+
+  function miniSeek(delta) {
+    if (!miniPlayer || typeof miniPlayer.getCurrentTime !== 'function') return;
+    var t = miniPlayer.getCurrentTime() + delta;
+    if (t < 0) t = 0;
+    miniPlayer.seekTo(t, true);
+  }
+
+  function miniToggleMute() {
+    if (!miniPlayer || typeof miniPlayer.isMuted !== 'function') return;
+    var icon = document.getElementById('mini-mute-icon');
+    if (miniPlayer.isMuted()) {
+      miniPlayer.unMute();
+      if (icon) icon.className = 'fa-solid fa-volume-high';
+    } else {
+      miniPlayer.mute();
+      if (icon) icon.className = 'fa-solid fa-volume-xmark';
+    }
+  }
+
+  /* ============================================================
+     MINI PLAYER — abrir / fechar / scroll
+  ============================================================ */
+  function isMobile() {
+    return window.innerWidth <= MINI_BREAKPOINT;
+  }
+
+  function showMiniPlayer() {
+    if (!currentYtId) return;
+    if (miniVisible) return;
+    if (!ytApiReady) return;
+
+    // 1) pega o tempo atual do player grande
+    var startSeconds = 0;
+    if (mainPlayer && typeof mainPlayer.getCurrentTime === 'function') {
+      startSeconds = mainPlayer.getCurrentTime() || 0;
+    }
+
+    // 2) PAUSA o player grande (evita áudio duplicado)
+    if (mainPlayer && typeof mainPlayer.pauseVideo === 'function') {
+      try { mainPlayer.pauseVideo(); } catch (e) {}
+    }
+
+    // 3) mostra o container do mini
+    var mini = document.getElementById('mini-player');
+    mini.classList.add('is-visible');
+    mini.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('mini-active');
+
+    // 4) cria o player do mini se ainda não existe (ou recria se trocou vídeo)
+    var needCreate = !miniPlayer
+      || typeof miniPlayer.getVideoData !== 'function'
+      || (miniPlayer.getVideoData() && miniPlayer.getVideoData().video_id !== currentYtId);
+
+    if (needCreate) {
+      createMiniPlayer(currentYtId, startSeconds);
+    } else {
+      try { miniPlayer.seekTo(startSeconds, true); } catch (e) {}
+      try { miniPlayer.playVideo(); } catch (e) {}
+    }
+
+    miniVisible = true;
+  }
+
+  function hideMiniPlayer(silent) {
+    var mini = document.getElementById('mini-player');
+    if (!mini) return;
+
+    // 1) pega o tempo do mini antes de destruir
+    var resumeAt = 0;
+    if (miniPlayer && typeof miniPlayer.getCurrentTime === 'function') {
+      resumeAt = miniPlayer.getCurrentTime() || 0;
+    }
+
+    // 2) pausa e destrói o mini
+    if (miniPlayer) {
+      try { miniPlayer.pauseVideo(); } catch (e) {}
+      try { miniPlayer.destroy(); } catch (e) {}
+      miniPlayer = null;
+    }
+    var target = document.getElementById('mini-yt-target');
+    if (target) target.innerHTML = '';
+
+    // 3) esconde o container
+    mini.classList.remove('is-visible');
+    mini.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('mini-active');
+    miniVisible = false;
+
+    // 4) sincroniza o tempo no player grande (sem dar play)
+    if (mainPlayer && typeof mainPlayer.seekTo === 'function' && resumeAt > 0) {
+      try { mainPlayer.seekTo(resumeAt, true); } catch (e) {}
+    }
+
+    // 5) se veio do botão X, marca dismissed e volta ao topo
+    if (!silent) {
+      miniDismissed = true;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  function onScrollCheck() {
+    if (scrollTicking) return;
+    scrollTicking = true;
+
+    requestAnimationFrame(function () {
+      scrollTicking = false;
+
+      var playerView = document.getElementById('player-view');
+      if (!playerView || playerView.classList.contains('hidden')) return;
+
+      if (!isMobile()) {
+        if (miniVisible) hideMiniPlayer(true);
+        return;
+      }
+
+      if (miniDismissed) return;
+
+      var frame = document.getElementById('video-frame');
+      if (!frame) return;
+
+      var rect = frame.getBoundingClientRect();
+      var headerH = parseInt(getComputedStyle(document.documentElement)
+        .getPropertyValue('--header-h'), 10) || 64;
+
+      var outOfView = rect.bottom < headerH + 20;
+
+      if (outOfView && !miniVisible) {
+        showMiniPlayer();
+      } else if (!outOfView && miniVisible) {
+        hideMiniPlayer(true);
+      }
+    });
+  }
+
+  window.addEventListener('scroll', onScrollCheck, { passive: true });
+  window.addEventListener('resize', function () {
+    if (!isMobile() && miniVisible) hideMiniPlayer(true);
+    onScrollCheck();
+  });
 
   /* ============================================================
      RENDER MENU
@@ -1186,8 +1509,14 @@
     document.getElementById('player-view').classList.remove('hidden');
 
     document.getElementById('current-title').textContent = lesson.title || '—';
-    document.getElementById('yt-player').src =
-      'https://www.youtube.com/embed/' + lesson.ytId + '?rel=0&autoplay=0';
+    currentYtId = lesson.ytId;
+
+    // cria o player grande via IFrame API
+    if (ytApiReady) {
+      createMainPlayer(lesson.ytId);
+    } else {
+      pendingLessonYtId = lesson.ytId;
+    }
 
     var textWithInputs = lesson.text.replace(/\[(.*?)\]/g, function (_m, answer) {
       return '<input type="text" class="blank-input" data-answer="' +
@@ -1195,22 +1524,36 @@
     });
     document.getElementById('exercise-text').innerHTML = textWithInputs;
 
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // reseta mini
+    hideMiniPlayer(true);
+    miniDismissed = false;
+
+    window.scrollTo({ top: 0, behavior: 'auto' });
   }
 
   /* ============================================================
      NAVIGATION
   ============================================================ */
   function backToMenu() {
-    document.getElementById('yt-player').src = '';
+    // destrói players
+    if (miniPlayer) {
+      try { miniPlayer.destroy(); } catch (e) {}
+      miniPlayer = null;
+    }
+    if (mainPlayer) {
+      try { mainPlayer.destroy(); } catch (e) {}
+      mainPlayer = null;
+    }
+    var miniTarget = document.getElementById('mini-yt-target');
+    if (miniTarget) miniTarget.innerHTML = '';
+    var mainContainer = document.getElementById('yt-player-container');
+    if (mainContainer) mainContainer.innerHTML = '<div id="yt-player-target"></div>';
+
     document.getElementById('player-view').classList.add('hidden');
     document.getElementById('menu-view').classList.remove('hidden');
+    hideMiniPlayer(true);
+    currentYtId = null;
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  function scrollToExercise() {
-    var el = document.querySelector('.exercise-panel');
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   /* ============================================================
@@ -1228,8 +1571,7 @@
 
       if (userVal !== '') {
         filled++;
-        var isCorrect = userVal === correctVal;
-        if (isCorrect) {
+        if (userVal === correctVal) {
           input.classList.add('correct');
           input.classList.remove('incorrect');
           correctCount++;
@@ -1276,7 +1618,6 @@
     var score = document.getElementById('result-score');
 
     var pct = total > 0 ? correct / total : 0;
-    var allFilled = filled === total;
 
     if (pct === 1) {
       iconBox.className = 'modal-icon success';
@@ -1310,7 +1651,6 @@
 
   function showHintModal() { openModal('hint-modal'); }
 
-  // close on overlay click / ESC
   document.querySelectorAll('.modal-overlay').forEach(function (overlay) {
     overlay.addEventListener('click', function (e) {
       if (e.target === overlay) closeModal(overlay.id);
@@ -1337,7 +1677,6 @@
       .replace(/'/g, '&#39;');
   }
 
-  // keyboard access on cards
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Enter' || e.key === ' ') {
       var card = document.activeElement;
