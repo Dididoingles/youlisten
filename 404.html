@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <meta name="theme-color" content="#0a0a0a">
+  
+  <!-- SEO -->
+  <title>404 — Página não encontrada | YouListen</title>
+  <meta name="description" content="A página que você procura não existe no YouListen. Volte para as lições ou acesse o site oficial.">
+  <meta name="robots" content="noindex, follow">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="404 — Página não encontrada | YouListen">
+  <meta property="og:description" content="A página que você procura não existe no YouListen.">
+  <meta property="og:image" content="metatisten.png">
+  <meta property="og:url" content="https://dididoingles.github.io/youlisten/">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="404 — Página não encontrada | YouListen">
+  <meta name="twitter:description" content="A página que você procura não existe no YouListen.">
+  <meta name="twitter:image" content="metatisten.png">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favilisten.png">
+  <link rel="apple-touch-icon" href="favilisten.png">
+  
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --red-400: #ff4d4d;
+      --red-500: #e10600;
+      --red-600: #c20000;
+      
+      --neutral-0:   #ffffff;
+      --neutral-400: #8a8a93;
+      --neutral-600: #4a4a52;
+      --neutral-800: #1c1c1f;
+      --neutral-850: #141416;
+      --neutral-900: #0d0d0f;
+      --neutral-950: #08080a;
+      
+      --bg:            var(--neutral-950);
+      --surface-1:     var(--neutral-900);
+      --surface-2:     var(--neutral-850);
+      --surface-3:     var(--neutral-800);
+      --border:        rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(255, 255, 255, 0.16);
+      --text:          #f4f4f5;
+      --text-muted:    #a1a1aa;
+      --text-faint:    #71717a;
+      --accent:        var(--red-500);
+      --accent-hover:  var(--red-400);
+      
+      --radius:    12px;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --ease:      cubic-bezier(0.4, 0, 0.2, 1);
+      --ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
+      
+      --shadow:    0 8px 24px rgba(0,0,0,0.4);
+      --shadow-lg: 0 24px 60px rgba(0,0,0,0.5);
+    }
+
+    html, body { height: 100%; }
+    html { -webkit-text-size-adjust: 100%; }
+    
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Ambient background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(225, 6, 0, 0.15), transparent 60%),
+        radial-gradient(ellipse 60% 40% at 100% 100%, rgba(225, 6, 0, 0.06), transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ===== APP SHELL: ocupa 100dvh sem scroll no desktop ===== */
+    .app-shell {
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== HEADER ===== */
+    .site-header {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      background: rgba(8, 8, 10, 0.7);
+      flex-shrink: 0;
+    }
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--accent);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 0.95rem;
+      box-shadow: 0 4px 16px rgba(225,6,0,0.35);
+      flex-shrink: 0;
+    }
+    .brand-text { display: flex; flex-direction: column; line-height: 1.1; }
+    .brand-text small {
+      font-size: 0.68rem;
+      font-weight: 500;
+      color: var(--text-faint);
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* ===== MAIN ===== */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== GRID: 2 colunas no desktop ===== */
+    .error-grid {
+      width: 100%;
+      max-width: 980px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      gap: 64px;
+      animation: fadeUp 0.6s var(--ease-out);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== COLUNA ESQUERDA: 404 ===== */
+    .code-badge {
+      position: relative;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+    .code-badge .headphones {
+      position: absolute;
+      font-size: 13rem;
+      color: var(--accent);
+      opacity: 0.07;
+      z-index: 0;
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(-6deg); }
+      50%      { transform: translateY(-12px) rotate(6deg); }
+    }
+    .code {
+      position: relative;
+      z-index: 1;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: clamp(6rem, 14vw, 10rem);
+      line-height: 0.9;
+      letter-spacing: -0.05em;
+      background: linear-gradient(180deg, #ffffff 0%, #8b8b95 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      user-select: none;
+    }
+
+    /* ===== COLUNA DIREITA: conteúdo ===== */
+    .content {
+      text-align: left;
+      max-width: 460px;
+    }
+
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.5rem, 3.5vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    /* Ações */
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px 20px;
+      border-radius: 100px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: all 0.2s var(--ease);
+      white-space: nowrap;
+    }
+    .btn i { font-size: 0.85rem; }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(225,6,0,0.35);
+    }
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(225,6,0,0.45);
+    }
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-secondary {
+      background: var(--surface-2);
+      border: 1px solid var(--border-strong);
+      color: var(--text);
+    }
+    .btn-secondary:hover {
+      background: var(--surface-3);
+      border-color: var(--border-strong);
+    }
+
+    /* Botão "voltar" separado, discreto, embaixo */
+    .actions-back {
+      margin-top: 14px;
+    }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 4px;
+      background: transparent;
+      color: var(--text-faint);
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .btn-ghost:hover { color: var(--text); }
+    .btn-ghost i { font-size: 0.7rem; }
+
+    /* ===== FOOTER ===== */
+    .site-footer {
+      padding: 16px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--text-faint);
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .site-footer a {
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .site-footer a:hover { color: var(--accent); }
+
+    /* ===== TABLET ===== */
+    @media (max-width: 900px) {
+      .error-grid {
+        gap: 40px;
+        max-width: 720px;
+      }
+      .code-badge .headphones { font-size: 10rem; }
+      .code { font-size: clamp(5rem, 16vw, 8rem); }
+      .content { max-width: 400px; }
+    }
+
+    /* ===== MOBILE: empilha ===== */
+    @media (max-width: 640px) {
+      .site-header { padding: 12px 0; }
+      .container { padding: 0 16px; }
+      .brand { font-size: 1.05rem; gap: 10px; }
+      .brand-mark { width: 32px; height: 32px; font-size: 0.85rem; }
+      .brand-text small { font-size: 0.62rem; }
+
+      main { padding: 28px 16px; }
+
+      .error-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        text-align: center;
+        max-width: 440px;
+      }
+
+      .code-badge .headphones { font-size: 9rem; }
+      .code { font-size: clamp(5.5rem, 22vw, 7.5rem); }
+
+      .content {
+        max-width: 100%;
+        text-align: center;
+      }
+
+      h1 { font-size: 1.35rem; margin-bottom: 10px; }
+      .subtitle { font-size: 0.88rem; margin-bottom: 24px; }
+
+      .actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn { width: 100%; padding: 12px 18px; font-size: 0.85rem; }
+      .actions-back { text-align: center; }
+      .btn-ghost { justify-content: center; width: 100%; }
+
+      .site-footer { padding: 14px 0; font-size: 0.7rem; }
+    }
+
+    /* ===== Desktop baixo (ex: 1366x768, notebooks) ===== */
+    @media (min-width: 641px) and (max-height: 700px) {
+      main { padding: 20px; }
+      .code { font-size: clamp(5rem, 12vw, 8rem); }
+      .code-badge .headphones { font-size: 10rem; }
+      h1 { font-size: 1.6rem; margin-bottom: 8px; }
+      .subtitle { margin-bottom: 20px; font-size: 0.88rem; }
+      .site-header { padding: 12px 0; }
+      .site-footer { padding: 12px 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-row">
+        <a href="/youlisten/" class="brand" aria-label="YouListen — Página inicial">
+          <div class="brand-mark"><i class="fa-solid fa-headphones"></i></div>
+          <div class="brand-text">
+            YouListen
+            <small>Pratique inglês com YouTube</small>
+          </div>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <div class="error-grid">
+
+      <!-- Coluna esquerda: 404 -->
+      <div class="code-badge" aria-hidden="true">
+        <i class="fa-solid fa-headphones headphones"></i>
+        <span class="code">404</span>
+      </div>
+
+      <!-- Coluna direita: conteúdo -->
+      <div class="content">
+        <h1>Ops, essa cena não existe</h1>
+        <p class="subtitle">
+          A página que você procura saiu do ar, mudou de endereço ou nunca existiu.
+          Escolha para onde ir:
+        </p>
+
+        <div class="actions">
+          <a href="https://dididoingles.github.io/youlisten/" class="btn btn-primary">
+            <i class="fa-solid fa-house"></i>
+            Voltar ao YouListen
+          </a>
+          <a href="https://dididoingles.github.io/estudeconosco/" class="btn btn-secondary" target="_blank" rel="noopener">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            Site oficial
+          </a>
+        </div>
+
+        <div class="actions-back">
+          <button class="btn-ghost" onclick="history.back()">
+            <i class="fa-solid fa-arrow-left"></i>
+            Voltar à página anterior
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      Feito com <i class="fa-solid fa-heart" style="color: var(--accent);"></i> por
+      <a href="https://instagram.com/dicarvalho.prof" target="_blank" rel="noopener">@dicarvalho.prof</a>
+      · YouListen © <span id="year"></span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
