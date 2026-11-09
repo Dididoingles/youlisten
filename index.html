@@ -1,611 +1,1105 @@
-<html>
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <meta name="theme-color" content="#0a0a0a">
+  
+  <!-- SEO & Meta -->
+  <title>YouListen — Pratique inglês com cenas do YouTube</title>
+  <meta name="description" content="Aprenda inglês com cenas curtas do YouTube. Assista, ouça e complete as lacunas para praticar listening e vocabulário.">
+  <meta name="author" content="@dicarvalho.prof">
+  <meta name="keywords" content="inglês, listening, youtube, aprender inglês, exercícios">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="YouListen — Pratique inglês com cenas do YouTube">
+  <meta property="og:description" content="Aprenda inglês com cenas curtas do YouTube. Assista, ouça e complete as lacunas.">
+  <meta property="og:image" content="metatisten.png">
+  <meta property="og:url" content="https://dididoingles.github.io/youlisten/">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="YouListen — Pratique inglês com cenas do YouTube">
+  <meta name="twitter:description" content="Aprenda inglês com cenas curtas do YouTube.">
+  <meta name="twitter:image" content="metatisten.png">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favilisten.png">
+  <link rel="apple-touch-icon" href="favilisten.png">
+  
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
   <style>
-    * {
+    /* ============ RESET & TOKENS ============ */
+    *, *::before, *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
     :root {
-      --primary-red: #c20000;
-      --bg-dark: #0a0a0a;
-      --bg-card: #141414;
-      --bg-card-hover: #1e1e1e;
-      --text-primary: #ffffff;
-      --text-secondary: #a0a0a0;
-      --border: #2a2a2a;
-      --transition-fast: 0.2s ease;
-      --transition-slow: 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      /* Color system */
+      --red-50:  #fff1f1;
+      --red-100: #ffdcdc;
+      --red-400: #ff4d4d;
+      --red-500: #e10600;
+      --red-600: #c20000;
+      --red-700: #970000;
+      
+      --neutral-0:   #ffffff;
+      --neutral-50:  #f7f7f8;
+      --neutral-100: #ececef;
+      --neutral-200: #d4d4d8;
+      --neutral-400: #8a8a93;
+      --neutral-600: #4a4a52;
+      --neutral-800: #1c1c1f;
+      --neutral-850: #141416;
+      --neutral-900: #0d0d0f;
+      --neutral-950: #08080a;
+      
+      /* Semantic */
+      --bg:          var(--neutral-950);
+      --surface-1:   var(--neutral-900);
+      --surface-2:   var(--neutral-850);
+      --surface-3:   var(--neutral-800);
+      --border:      rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(255, 255, 255, 0.16);
+      --text:        #f4f4f5;
+      --text-muted:  #a1a1aa;
+      --text-faint:  #71717a;
+      --accent:      var(--red-500);
+      --accent-hover: var(--red-400);
+      --success:     #22c55e;
+      --danger:      var(--red-500);
+      
+      /* Layout */
+      --radius-sm: 8px;
+      --radius:    12px;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --container: 1280px;
+      
+      /* Motion */
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      
+      /* Shadows */
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
+      --shadow: 0 8px 24px rgba(0,0,0,0.4);
+      --shadow-lg: 0 24px 60px rgba(0,0,0,0.5);
     }
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #0a0a0a 0%, #0f0f0f 100%);
-      color: var(--text-primary);
-      min-height: 100vh;
-      margin: 0;
-      padding: 0;
-    }
-
-    .cinema-decor {
-      position: fixed;
-      pointer-events: none;
-      z-index: 999;
-      font-size: 3rem;
-      animation: float 6s infinite ease-in-out;
-      opacity: 0.3;
-    }
-    .pop-left { top: 15%; left: 2%; }
-    .pop-right { top: 20%; right: 2%; }
-    .pop-bottom { bottom: 10%; left: 5%; animation-delay: 2s; }
+    html { -webkit-text-size-adjust: 100%; }
     
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(-5deg); }
-      50% { transform: translateY(-20px) rotate(5deg); }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100dvh;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Subtle ambient background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(225, 6, 0, 0.15), transparent 60%),
+        radial-gradient(ellipse 60% 40% at 100% 100%, rgba(225, 6, 0, 0.06), transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    input { font-family: inherit; }
+
+    /* ============ TYPOGRAPHY ============ */
+    h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02em; line-height: 1.2; }
+
+    /* ============ WELCOME SCREEN ============ */
+    #welcome-screen {
+      position: fixed;
+      inset: 0;
+      background: var(--neutral-950);
+      display: grid;
+      place-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s var(--ease), visibility 0.5s;
+    }
+    #welcome-screen.is-hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .welcome-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      text-align: center;
+    }
+    .welcome-logo {
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      background: var(--accent);
+      display: grid;
+      place-items: center;
+      font-size: 1.75rem;
+      color: white;
+      box-shadow: 0 12px 32px rgba(225,6,0,0.4);
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+    .welcome-inner p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+    .loading-bar {
+      width: 120px;
+      height: 2px;
+      background: var(--surface-3);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .loading-bar::after {
+      content: '';
+      display: block;
+      height: 100%;
+      width: 40%;
+      background: var(--accent);
+      border-radius: 2px;
+      animation: loading 1.2s ease-in-out infinite;
+    }
+    @keyframes loading {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(350%); }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 12px 32px rgba(225,6,0,0.4); }
+      50% { box-shadow: 0 12px 48px rgba(225,6,0,0.7); }
+    }
+
+    /* ============ LAYOUT ============ */
+    .app-shell {
+      position: relative;
+      z-index: 1;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
     }
 
     .container {
-      max-width: 1200px;
+      width: 100%;
+      max-width: var(--container);
       margin: 0 auto;
-      padding: 20px;
-      position: relative;
-      z-index: 10;
+      padding: 0 20px;
     }
 
-    .header {
-      text-align: center;
-      padding: 40px 20px 20px;
-      animation: fadeInDown 0.8s;
+    /* ============ HEADER ============ */
+    .site-header {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(8, 8, 10, 0.7);
     }
-    h1 {
-      font-size: 3rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--primary-red) 0%, #c20000 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      letter-spacing: -0.02em;
+    .header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
     }
-    .subtitle {
-      color: var(--text-secondary);
-      margin-top: 10px;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+    }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: var(--accent);
+      display: grid;
+      place-items: center;
+      color: white;
       font-size: 1rem;
+      box-shadow: 0 4px 16px rgba(225,6,0,0.35);
+      flex-shrink: 0;
     }
-    .instagram-badge {
+    .brand-text { display: flex; flex-direction: column; line-height: 1.1; }
+    .brand-text small {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--text-faint);
+      letter-spacing: 0.02em;
+      font-family: 'Inter', sans-serif;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      color: var(--text-muted);
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      transition: all 0.2s var(--ease);
+      font-size: 0.95rem;
+    }
+    .icon-btn:hover {
+      color: var(--text);
+      background: var(--surface-3);
+      border-color: var(--border-strong);
+    }
+    .icon-btn.accent { color: var(--accent); }
+
+    /* ============ HERO (menu) ============ */
+    .hero {
+      padding: 48px 0 32px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 6vw, 3.25rem);
+      font-weight: 700;
+      background: linear-gradient(180deg, #fff 0%, #b8b8bf 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+    }
+    .hero p {
+      color: var(--text-muted);
+      font-size: clamp(0.9rem, 2vw, 1.05rem);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 24px;
+    }
+    .badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(255,255,255,0.05);
-      padding: 8px 16px;
-      border-radius: 40px;
-      margin-top: 15px;
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      text-decoration: none;
-      transition: 0.2s;
+      padding: 8px 14px;
+      border-radius: 100px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      transition: all 0.2s var(--ease);
     }
-    .instagram-badge:hover {
-      background: rgba(255,255,255,0.1);
-      color: var(--primary-red);
+    .badge i { color: var(--accent); font-size: 0.75rem; }
+    .badge.clickable:hover {
+      color: var(--text);
+      border-color: var(--border-strong);
+      background: var(--surface-3);
     }
 
-    #welcome-screen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    /* ============ LESSON GRID ============ */
+    .section-head {
       display: flex;
       align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      transition: opacity 1s;
-    }
-    .welcome-content {
-      text-align: center;
-      animation: pulse 1.5s ease infinite;
-    }
-    .welcome-content h2 {
-      font-size: 2.5rem;
+      justify-content: space-between;
       margin-bottom: 20px;
-      background: linear-gradient(135deg, var(--primary-red), #ff6b6b);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      padding-top: 16px;
     }
-    .welcome-content p {
-      color: var(--text-secondary);
-      font-size: 1.2rem;
+    .section-head h2 {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-faint);
     }
-    .loading-spinner {
-      width: 50px;
-      height: 50px;
-      border: 3px solid var(--border);
-      border-top-color: var(--primary-red);
-      border-radius: 50%;
-      margin: 30px auto 0;
-      animation: spin 1s linear infinite;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.9; transform: scale(1.02); }
-    }
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+    .section-head .count {
+      font-size: 0.75rem;
+      color: var(--text-faint);
+      background: var(--surface-2);
+      padding: 4px 10px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
     }
 
     .lesson-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: 24px;
-      animation: fadeInUp 0.8s;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px;
+      padding-bottom: 64px;
     }
+
     .lesson-card {
-      background: var(--bg-card);
-      border-radius: 20px;
+      background: var(--surface-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
       overflow: hidden;
       cursor: pointer;
-      transition: all 0.3s;
-      border: 1px solid var(--border);
+      transition: all 0.25s var(--ease);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .lesson-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      box-shadow: 0 0 0 0 var(--accent);
+      transition: box-shadow 0.25s var(--ease);
     }
     .lesson-card:hover {
-      transform: translateY(-5px);
-      background: var(--bg-card-hover);
-      border-color: var(--primary-red);
+      background: var(--surface-2);
+      border-color: var(--border-strong);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
     }
-    .card-inner {
-      display: flex;
-      padding: 16px;
-      gap: 16px;
+    .lesson-card:hover::after {
+      box-shadow: inset 0 0 0 1px rgba(225,6,0,0.35);
     }
-    .thumbnail-wrapper {
-      flex-shrink: 0;
-      width: 120px;
-      height: 90px;
-      border-radius: 12px;
+    .lesson-card:active { transform: translateY(-1px); }
+
+    .card-thumb {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      background: var(--surface-3);
       overflow: hidden;
-      background: #2a2a2a;
     }
-    .thumbnail-img {
+    .card-thumb img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform 0.4s var(--ease);
     }
-    .card-content {
-      flex: 1;
-      min-width: 0;
+    .lesson-card:hover .card-thumb img { transform: scale(1.05); }
+    .card-thumb::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.7) 100%);
     }
-    .lesson-title {
+    .card-play {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      z-index: 2;
+      opacity: 0;
+      transition: opacity 0.25s var(--ease);
+    }
+    .lesson-card:hover .card-play { opacity: 1; }
+    .card-play span {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: grid;
+      place-items: center;
+      color: white;
       font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-      color: var(--text-primary);
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
+      box-shadow: 0 8px 24px rgba(225,6,0,0.5);
+      transform: scale(0.85);
+      transition: transform 0.25s var(--ease);
     }
-    .lesson-description {
-      font-size: 0.75rem;
-      color: var(--text-secondary);
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      margin-bottom: 8px;
-    }
-    .lesson-meta {
-      display: flex;
-      gap: 12px;
+    .lesson-card:hover .card-play span { transform: scale(1); }
+
+    .card-duration {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      z-index: 3;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(8px);
+      color: #fff;
       font-size: 0.7rem;
-      color: var(--text-secondary);
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+      letter-spacing: 0.02em;
     }
 
-    .player-container {
-      max-width: 900px;
-      margin: 0 auto;
-      animation: fadeInUp 0.6s;
+    .card-body {
+      padding: 16px 18px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
     }
-    .back-btn {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border);
-      border-radius: 40px;
-      padding: 10px 24px;
-      color: var(--text-primary);
-      cursor: pointer;
-      font-family: inherit;
-      font-weight: 500;
-      margin-bottom: 30px;
+    .card-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--text);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .card-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .card-footer {
+      margin-top: auto;
+      padding-top: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-top: 1px solid var(--border);
+      font-size: 0.72rem;
+      color: var(--text-faint);
+    }
+    .card-footer i { color: var(--text-faint); }
+    .card-footer span { display: inline-flex; align-items: center; gap: 5px; }
+
+    /* ============ PLAYER VIEW ============ */
+    .player-view {
+      padding: 24px 0 64px;
+      animation: fadeUp 0.4s var(--ease-out);
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .player-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .back-link {
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      padding: 8px 14px;
+      border-radius: 100px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      margin-bottom: 20px;
+      transition: all 0.2s var(--ease);
     }
-    .back-btn:hover {
-      background: rgba(255,255,255,0.1);
-      border-color: var(--primary-red);
+    .back-link:hover {
+      color: var(--text);
+      border-color: var(--border-strong);
+      background: var(--surface-3);
     }
-    .video-wrapper {
+    .back-link i { font-size: 0.75rem; }
+
+    .video-frame {
       position: relative;
       width: 100%;
-      padding-bottom: 56.25%;
-      border-radius: 20px;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--radius-lg);
       overflow: hidden;
-      margin-bottom: 30px;
       background: #000;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
     }
-    .video-wrapper iframe {
+    .video-frame iframe {
       position: absolute;
-      top: 0;
-      left: 0;
+      inset: 0;
       width: 100%;
       height: 100%;
       border: none;
-    }
-    .exercise-text {
-      background: var(--bg-card);
-      border-radius: 20px;
-      padding: 30px;
-      line-height: 2.5;
-      font-size: 1.05rem;
-      border: 1px solid var(--border);
-      margin: 20px 0;
-    }
-    .blank-input {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 6px 12px;
-      width: 130px;
-      text-align: center;
-      font-family: 'Poppins', monospace;
-      font-weight: 500;
-      color: var(--text-primary);
-    }
-    .blank-input:focus {
-      outline: none;
-      border-color: var(--primary-red);
-      background: rgba(194,0,0,0.1);
-    }
-    .blank-input.correct {
-      border-color: #28a745;
-      background: rgba(40,167,69,0.1);
-    }
-    .blank-input.incorrect {
-      border-color: var(--primary-red);
-      background: rgba(194,0,0,0.1);
-    }
-    .action-buttons {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      margin-top: 30px;
-    }
-    .btn-primary {
-      background: var(--primary-red);
-      border: none;
-      padding: 12px 32px;
-      border-radius: 40px;
-      color: white;
-      font-weight: 700;
-      cursor: pointer;
-      font-family: inherit;
-    }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      filter: brightness(1.1);
-    }
-    .btn-secondary {
-      background: transparent;
-      border: 2px solid var(--border);
-      padding: 12px 32px;
-      border-radius: 40px;
-      color: var(--text-primary);
-      font-weight: 700;
-      cursor: pointer;
-    }
-    .btn-secondary:hover {
-      border-color: var(--primary-red);
     }
 
-    .loader-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
+    .lesson-info {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .lesson-info h1 {
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
+      font-weight: 700;
       width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.8);
+      color: var(--text);
+    }
+
+    .player-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .tool-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      transition: all 0.2s var(--ease);
+    }
+    .tool-btn:hover {
+      color: var(--text);
+      background: var(--surface-3);
+      border-color: var(--border-strong);
+    }
+    .tool-btn i { font-size: 0.85rem; }
+
+    /* ============ EXERCISE ============ */
+    .exercise-panel {
+      background: var(--surface-1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      margin-top: 24px;
+    }
+    .exercise-panel h3 {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-faint);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .exercise-panel h3 i { color: var(--accent); }
+
+    .exercise-text {
+      font-size: 1.05rem;
+      line-height: 2.4;
+      color: var(--text);
+    }
+
+    .blank-input {
+      display: inline-block;
+      background: var(--surface-3);
+      border: 1px solid var(--border-strong);
+      border-bottom: 2px solid var(--accent);
+      border-radius: 6px;
+      padding: 2px 10px;
+      width: 130px;
+      text-align: center;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.9em;
+      color: var(--text);
+      transition: all 0.2s var(--ease);
+      margin: 0 2px;
+      vertical-align: baseline;
+    }
+    .blank-input::placeholder { color: var(--text-faint); font-weight: 400; }
+    .blank-input:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: rgba(225,6,0,0.08);
+      box-shadow: 0 0 0 3px rgba(225,6,0,0.15);
+    }
+    .blank-input.correct {
+      border-color: var(--success);
+      border-bottom-color: var(--success);
+      background: rgba(34,197,94,0.1);
+      color: var(--success);
+    }
+    .blank-input.incorrect {
+      border-color: var(--danger);
+      border-bottom-color: var(--danger);
+      background: rgba(225,6,0,0.1);
+      color: var(--red-400);
+      animation: shake 0.4s var(--ease);
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-4px); }
+      75% { transform: translateX(4px); }
+    }
+
+    .exercise-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: 100px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.2s var(--ease);
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(225,6,0,0.35);
+    }
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(225,6,0,0.45);
+    }
+    .btn-primary:active { transform: translateY(0); }
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid var(--border-strong);
+      color: var(--text-muted);
+    }
+    .btn-ghost:hover {
+      background: var(--surface-2);
+      color: var(--text);
+      border-color: var(--border-strong);
+    }
+
+    /* ============ MODAL ============ */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
       backdrop-filter: blur(8px);
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s var(--ease), visibility 0.25s;
+    }
+    .modal-overlay.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .modal {
+      background: var(--surface-2);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      max-width: 440px;
+      width: 100%;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+      transform: scale(0.95);
+      transition: transform 0.25s var(--ease-out);
+      position: relative;
+    }
+    .modal-overlay.is-open .modal { transform: scale(1); }
+    
+    .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: var(--text-faint);
+      transition: all 0.2s var(--ease);
+      font-size: 0.9rem;
+    }
+    .modal-close:hover { color: var(--text); background: var(--surface-3); }
+
+    .modal-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 20px;
+      font-size: 1.4rem;
+    }
+    .modal-icon.accent { background: rgba(225,6,0,0.15); color: var(--accent); }
+    .modal-icon.success { background: rgba(34,197,94,0.15); color: var(--success); }
+
+    .modal h3 {
+      font-size: 1.25rem;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+    .modal p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+    .modal-result {
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 1002;
-      visibility: hidden;
-      opacity: 0;
-      transition: all 0.3s;
+      gap: 6px;
+      margin: 20px 0 24px;
+      font-size: 2rem;
+      font-weight: 700;
+      font-family: 'Space Grotesk', sans-serif;
     }
-    .loader-overlay.active {
-      visibility: visible;
-      opacity: 1;
+    .modal-result .hit { color: var(--success); }
+    .modal-result .sep { color: var(--text-faint); font-weight: 400; }
+    .modal-result .total { color: var(--text-muted); }
+
+    .modal-actions { display: flex; gap: 10px; }
+    .modal-actions .btn { flex: 1; }
+    .modal-actions .btn-ghost { flex: 1; }
+
+    /* ============ SKELETON ============ */
+    .skeleton {
+      background: linear-gradient(90deg, var(--surface-2) 25%, var(--surface-3) 50%, var(--surface-2) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+      border-radius: var(--radius);
     }
-    .spinner-large {
-      width: 60px;
-      height: 60px;
-      border: 4px solid var(--border);
-      border-top-color: var(--primary-red);
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-      margin: 0 auto 20px;
+    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    .skeleton-card {
+      height: 300px;
+      border-radius: var(--radius-lg);
     }
 
+    /* ============ UTILITIES ============ */
     .hidden { display: none !important; }
+    .visually-hidden {
+      position: absolute !important;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0);
+      white-space: nowrap; border: 0;
+    }
 
-    /* ===== MOBILE OPTIMIZATIONS ===== */
+    /* ============ EMPTY / ERROR ============ */
+    .state-message {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 64px 20px;
+      color: var(--text-muted);
+    }
+    .state-message i {
+      font-size: 2.5rem;
+      color: var(--text-faint);
+      margin-bottom: 16px;
+      display: block;
+    }
+    .state-message h3 { font-size: 1.1rem; color: var(--text); margin-bottom: 8px; }
+    .state-message p { font-size: 0.9rem; }
+
+    /* ============ FOOTER ============ */
+    .site-footer {
+      margin-top: auto;
+      padding: 32px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-faint);
+    }
+    .site-footer a { color: var(--text-muted); transition: color 0.2s; }
+    .site-footer a:hover { color: var(--accent); }
+
+    /* ============ MEDIA QUERIES ============ */
     
-    @media (max-width: 768px) {
-      body {
-        font-size: 16px;
+    /* Tablet */
+    @media (max-width: 900px) {
+      .lesson-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 14px;
       }
+    }
+
+    /* Mobile */
+    @media (max-width: 640px) {
+      .container { padding: 0 16px; }
       
-      .container {
-        padding: 8px;
-      }
-      
-      .header {
-        padding: 15px 10px 10px;
-      }
-      
-      h1 {
-        font-size: 1.8rem;
-      }
-      
-      .subtitle {
-        font-size: 0.9rem;
-      }
-      
+      .site-header { padding: 14px 0; }
+      .brand { font-size: 1.1rem; gap: 10px; }
+      .brand-mark { width: 34px; height: 34px; font-size: 0.9rem; }
+      .brand-text small { font-size: 0.65rem; }
+      .icon-btn { width: 36px; height: 36px; font-size: 0.85rem; }
+
+      .hero { padding: 32px 0 24px; }
+      .hero h1 { font-size: 1.85rem; }
+      .hero p { font-size: 0.9rem; }
+      .hero-badges { gap: 6px; margin-top: 20px; }
+      .badge { padding: 6px 12px; font-size: 0.72rem; }
+
+      .section-head { padding-top: 8px; margin-bottom: 14px; }
+
       .lesson-grid {
         grid-template-columns: 1fr;
         gap: 12px;
+        padding-bottom: 48px;
       }
+      .card-body { padding: 14px 16px 16px; }
+      .card-title { font-size: 0.9rem; }
+      .card-desc { font-size: 0.75rem; }
+      .card-footer { font-size: 0.68rem; padding-top: 10px; }
+
+      .player-view { padding: 16px 0 48px; }
+      .back-link { padding: 8px 12px; font-size: 0.8rem; }
       
-      .lesson-card {
-        border-radius: 16px;
-      }
+      .lesson-info { margin-top: 16px; }
+      .lesson-info h1 { font-size: 1.15rem; }
       
-      .card-inner {
-        padding: 14px;
-        gap: 14px;
+      .player-toolbar { gap: 8px; margin-top: 12px; }
+      .tool-btn { padding: 8px 12px; font-size: 0.78rem; gap: 6px; }
+
+      .exercise-panel {
+        padding: 20px 16px;
+        margin-top: 18px;
+        border-radius: var(--radius);
       }
-      
-      .thumbnail-wrapper {
-        width: 110px;
-        height: 80px;
-        border-radius: 12px;
-      }
-      
-      .lesson-title {
-        font-size: 1rem;
-        line-height: 1.4;
-      }
-      
-      .lesson-description {
-        font-size: 0.8rem;
-      }
-      
-      .lesson-meta {
-        font-size: 0.75rem;
-        gap: 15px;
-        margin-top: 6px;
-      }
-      
-      #hintBox {
-        right: auto !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        top: auto !important;
-        bottom: 15px !important;
-        max-width: 85% !important;
-        font-size: 0.75rem !important;
-        padding: 14px 18px !important;
-        z-index: 1000 !important;
-        border-left-width: 4px !important;
-      }
-      
-      #hintBox span {
-        font-size: 1.4rem !important;
-        padding: 4px 6px !important;
-        top: 6px !important;
-        right: 8px !important;
-      }
-      
-      .player-container {
-        padding: 0;
-      }
-      
-      .back-btn {
-        padding: 12px 20px;
-        font-size: 0.9rem;
-        margin-bottom: 16px;
-        margin-top: 5px;
-      }
-      
-      .video-wrapper {
-        border-radius: 16px;
-        margin-bottom: 20px;
-      }
-      
-      .exercise-text {
-        padding: 18px 14px;
-        line-height: 2.2;
-        font-size: 0.95rem;
-        border-radius: 16px;
-      }
+      .exercise-panel h3 { font-size: 0.7rem; margin-bottom: 14px; }
+      .exercise-text { font-size: 0.95rem; line-height: 2.2; }
       
       .blank-input {
-        width: 110px;
-        padding: 8px 10px;
-        font-size: 0.85rem;
-        margin: 4px 3px;
-        border-radius: 10px;
+        width: 100px;
+        padding: 4px 8px;
+        font-size: 0.85em;
       }
-      
-      .action-buttons {
+
+      .exercise-actions {
         flex-direction: column;
-        gap: 12px;
-        margin-top: 20px;
-        margin-bottom: 20px;
+        gap: 8px;
+        margin-top: 18px;
       }
-      
-      .btn-primary, .btn-secondary {
-        padding: 14px 20px;
-        font-size: 1rem;
-        width: 100%;
-        border-radius: 50px;
-      }
-      
-      #current-title {
-        font-size: 1.2rem !important;
-        text-align: center;
-      }
-      
-      .cinema-decor {
-        font-size: 1.8rem;
-        opacity: 0.2;
-      }
-      .pop-left { top: auto; bottom: 10px; left: 5px; }
-      .pop-right { top: auto; bottom: 20px; right: 5px; }
-      .pop-bottom { display: none; }
+      .btn { padding: 12px 18px; font-size: 0.85rem; width: 100%; }
+      .btn-primary, .btn-ghost { width: 100%; }
+
+      .modal { padding: 24px 20px; border-radius: var(--radius-lg); }
+      .modal h3 { font-size: 1.1rem; }
+      .modal p { font-size: 0.85rem; }
+      .modal-result { font-size: 1.75rem; }
+      .modal-actions { flex-direction: column; }
+      .modal-actions .btn { width: 100%; }
+
+      .site-footer { padding: 24px 0; font-size: 0.72rem; }
     }
-    
-    @media (max-width: 480px) {
-      .thumbnail-wrapper {
-        width: 90px;
-        height: 65px;
-      }
-      
-      .lesson-title {
-        font-size: 0.9rem;
-      }
-      
-      .lesson-description {
-        font-size: 0.7rem;
-      }
-      
-      .blank-input {
-        width: 95px;
-        padding: 7px 8px;
-        font-size: 0.8rem;
-      }
-      
-      .exercise-text {
-        line-height: 2;
-        font-size: 0.9rem;
-        word-break: break-word;
-      }
-      
-      .lesson-meta {
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-      
-      #hintBox {
-        max-width: 90% !important;
-        bottom: 10px !important;
-        font-size: 0.7rem !important;
-        padding: 12px 16px !important;
-      }
-      
-      .btn-primary, .btn-secondary {
-        padding: 12px 16px;
-        font-size: 0.9rem;
+
+    @media (max-width: 380px) {
+      .hero h1 { font-size: 1.6rem; }
+      .blank-input { width: 85px; }
+      .exercise-text { font-size: 0.9rem; line-height: 2; }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
       }
     }
   </style>
 </head>
 <body>
 
+<!-- ===== WELCOME ===== -->
 <div id="welcome-screen">
-  <div class="welcome-content">
-    <h2>🎧</h2>
+  <div class="welcome-inner">
+    <div class="welcome-logo"><i class="fa-solid fa-headphones"></i></div>
     <p>@dicarvalho.prof</p>
-    <div class="loading-spinner"></div>
+    <div class="loading-bar"></div>
   </div>
 </div>
 
-<div class="cinema-decor pop-left">🍿</div>
-<div class="cinema-decor pop-right">🎬</div>
-<div class="cinema-decor pop-bottom">🎧</div>
-
-<div class="container">
-  <div class="header">
-    <h1>YouListen</h1>
-    <div class="subtitle">Pratique seu Inglês com cenas curtinhas do Youtube</div>
-    <div style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 8px;">
-    💡 Clique em qualquer card → assista ao vídeo → complete as lacunas
+<!-- ===== APP SHELL ===== -->
+<div class="app-shell">
+  
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-row">
+        <a href="#" class="brand" onclick="event.preventDefault(); backToMenu();">
+          <div class="brand-mark"><i class="fa-solid fa-headphones"></i></div>
+          <div class="brand-text">
+            YouListen
+            <small>Pratique inglês com YouTube</small>
+          </div>
+        </a>
+        <div class="header-actions">
+          <a href="https://instagram.com/dicarvalho.prof" target="_blank" rel="noopener" class="icon-btn accent" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+        </div>
+      </div>
     </div>
-    <a href="https://instagram.com/dicarvalho.prof" target="_blank" class="instagram-badge">
-      📷 Siga @dicarvalho.prof
-    </a>
-  </div>
+  </header>
 
-  <div id="menu-view">
-    <div id="lesson-grid" class="lesson-grid">Loading lessons...</div>
-  </div>
+  <!-- ===== MENU VIEW ===== -->
+  <main id="menu-view">
+    <div class="container">
+      <section class="hero">
+        <h1>Ouça. Complete. Aprenda.</h1>
+        <p>Cenas curtinhas do YouTube para você treinar listening e vocabulário no seu ritmo.</p>
+        <div class="hero-badges">
+          <span class="badge"><i class="fa-solid fa-circle-play"></i> Assista ao vídeo</span>
+          <span class="badge"><i class="fa-solid fa-pen-to-square"></i> Complete as lacunas</span>
+          <span class="badge"><i class="fa-solid fa-circle-check"></i> Receba feedback</span>
+        </div>
+      </section>
 
-  <div id="player-view" class="player-container hidden">
-    <button class="back-btn" onclick="backToMenu()">← back to gallery</button>
-    <div class="video-wrapper">
-      <iframe id="yt-player" allowfullscreen></iframe>
+      <div class="section-head">
+        <h2>Lições disponíveis</h2>
+        <span class="count" id="lesson-count">—</span>
+      </div>
+
+      <div id="lesson-grid" class="lesson-grid">
+        <!-- skeletons -->
+        <div class="skeleton skeleton-card"></div>
+        <div class="skeleton skeleton-card"></div>
+        <div class="skeleton skeleton-card"></div>
+      </div>
     </div>
-    <h2 id="current-title" style="color: var(--primary-red); font-size: 1.5rem; margin-bottom: 15px;"></h2>
-    <div id="exercise-text" class="exercise-text"></div>
-    <div class="action-buttons">
-      <button class="btn-primary" onclick="checkAnswers()">✓ Check Answers</button>
-      <button class="btn-secondary" onclick="resetTest()">⟳ Reset</button>
+  </main>
+
+  <!-- ===== PLAYER VIEW ===== -->
+  <main id="player-view" class="player-view hidden">
+    <div class="container">
+      <div class="player-layout">
+        <div>
+          <button class="back-link" onclick="backToMenu()">
+            <i class="fa-solid fa-arrow-left"></i> Voltar para lições
+          </button>
+        </div>
+
+        <div class="video-frame">
+          <iframe id="yt-player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <div>
+          <div class="lesson-info">
+            <h1 id="current-title">—</h1>
+          </div>
+
+          <div class="player-toolbar">
+            <button class="tool-btn" onclick="showHintModal()">
+              <i class="fa-solid fa-lightbulb"></i> Como usar
+            </button>
+            <button class="tool-btn" onclick="scrollToExercise()">
+              <i class="fa-solid fa-arrow-down"></i> Ir ao exercício
+            </button>
+          </div>
+
+          <div class="exercise-panel">
+            <h3><i class="fa-solid fa-headphones"></i> Complete as lacunas</h3>
+            <div id="exercise-text" class="exercise-text"></div>
+            <div class="exercise-actions">
+              <button class="btn btn-primary" onclick="checkAnswers()">
+                <i class="fa-solid fa-check"></i> Verificar respostas
+              </button>
+              <button class="btn btn-ghost" onclick="resetTest()">
+                <i class="fa-solid fa-rotate-left"></i> Recomeçar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      Feito com <i class="fa-solid fa-heart" style="color: var(--accent);"></i> por
+      <a href="https://instagram.com/dicarvalho.prof" target="_blank" rel="noopener">@dicarvalho.prof</a>
+      · YouListen © <span id="year"></span>
+    </div>
+  </footer>
+</div>
+
+<!-- ===== MODAL: RESULT ===== -->
+<div id="result-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="result-title">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('result-modal')" aria-label="Fechar">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div id="result-icon" class="modal-icon accent">
+      <i class="fa-solid fa-clipboard-check"></i>
+    </div>
+    <h3 id="result-title">Resultado</h3>
+    <p id="result-message">Confira como você foi.</p>
+    <div class="modal-result" id="result-score">
+      <span class="hit">0</span>
+      <span class="sep">/</span>
+      <span class="total">0</span>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('result-modal')">Fechar</button>
+      <button class="btn btn-primary" onclick="closeModal('result-modal'); resetTest();">
+        <i class="fa-solid fa-rotate-left"></i> Tentar de novo
+      </button>
     </div>
   </div>
 </div>
 
-<!-- Floating Hint Box (Closable) -->
-<div style="position: fixed; right: 20px; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); border-left: 3px solid var(--primary-red); border-radius: 12px; padding: 16px 20px; max-width: 260px; z-index: 100; font-size: 0.8rem; line-height: 1.4; box-shadow: 0 4px 20px rgba(0,0,0,0.3);" id="hintBox">
-  <span onclick="document.getElementById('hintBox').style.display='none'" style="position: absolute; top: 8px; right: 12px; cursor: pointer; color: var(--text-secondary); font-size: 1.2rem; font-weight: bold;">&times;</span>
-  💡 <strong>Dica</strong><br>
-  Assista ao vídeo completo uma vez e depois assista novamente para preencher as lacunas. 😉
-</div>
-
-<div id="loader" class="loader-overlay">
-  <div class="loader-content">
-    <div class="spinner-large"></div>
-    <p>loading lesson...</p>
+<!-- ===== MODAL: HINT ===== -->
+<div id="hint-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="hint-title">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('hint-modal')" aria-label="Fechar">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div class="modal-icon accent"><i class="fa-solid fa-lightbulb"></i></div>
+    <h3 id="hint-title">Como usar o YouListen</h3>
+    <p>1. Assista ao vídeo completo uma vez para entender o contexto.</p>
+    <p>2. Reproduza novamente e complete as lacunas ouvindo com atenção.</p>
+    <p>3. Clique em <strong>Verificar respostas</strong> para ver o feedback.</p>
+    <div class="modal-actions">
+      <button class="btn btn-primary" onclick="closeModal('hint-modal')">Entendi</button>
+    </div>
   </div>
 </div>
 
 <script>
+  /* ============================================================
+     STATE & API (lógica intacta)
+  ============================================================ */
   var lessons = [];
   var API_URL = 'https://script.google.com/macros/s/AKfycbwIOrPyYibx0j0ZY5mcUAPJS2nSHrhjdRTE8IlYDCNyU1oTawcsKhtHpHYEZjTzPWc_qQ/exec?action=getLessons';
-  
-  setTimeout(function() {
-    var welcome = document.getElementById('welcome-screen');
-    welcome.style.opacity = '0';
-    setTimeout(function() {
-      welcome.style.display = 'none';
-    }, 1000);
-  }, 1500);
 
-  window.onload = function() {
+  /* ============================================================
+     BOOT
+  ============================================================ */
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // welcome fade
+  setTimeout(function () {
+    var welcome = document.getElementById('welcome-screen');
+    welcome.classList.add('is-hidden');
+    setTimeout(function () { welcome.style.display = 'none'; }, 600);
+  }, 1200);
+
+  window.onload = function () {
     fetch(API_URL)
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function(result) {
+      .then(function (response) { return response.json(); })
+      .then(function (result) {
         if (result.success) {
           lessons = result.data;
           renderMenu();
@@ -613,85 +1107,128 @@
           throw new Error(result.error);
         }
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.error(error);
-        document.getElementById('lesson-grid').innerHTML = '<p style="text-align:center;color:red;">Error loading lessons.<br>' + error.message + '</p>';
+        renderError(error.message);
       });
   };
 
+  /* ============================================================
+     RENDER MENU
+  ============================================================ */
   function renderMenu() {
     var grid = document.getElementById('lesson-grid');
+    var countEl = document.getElementById('lesson-count');
+
     if (!lessons.length) {
-      grid.innerHTML = '<p style="text-align:center;color:var(--text-secondary);">No lessons found. Check your Sheet.</p>';
+      countEl.textContent = '0';
+      grid.innerHTML =
+        '<div class="state-message">' +
+          '<i class="fa-solid fa-box-open"></i>' +
+          '<h3>Nenhuma lição encontrada</h3>' +
+          '<p>Adicione lições na sua planilha para começar.</p>' +
+        '</div>';
       return;
     }
-    
+
+    countEl.textContent = lessons.length + (lessons.length === 1 ? ' lição' : ' lições');
+
     var html = '';
     for (var i = 0; i < lessons.length; i++) {
       var lesson = lessons[i];
-      html += '<div class="lesson-card" onclick="loadLesson(' + lesson.id + ')">';
-      html += '  <div class="card-inner">';
-      html += '    <div class="thumbnail-wrapper">';
-      html += '      <img class="thumbnail-img" src="' + lesson.thumbnail + '" loading="lazy" onerror="this.src=\'https://via.placeholder.com/120x90?text=No+Video\'">';
-      html += '    </div>';
-      html += '    <div class="card-content">';
-      html += '      <div class="lesson-title">' + escapeHtml(lesson.videoTitle || lesson.title) + '</div>';
-      html += '      <div class="lesson-description">' + escapeHtml(lesson.description || 'No description') + '</div>';
-      html += '      <div class="lesson-meta">';
-      html += '        <span>⏱️ ' + (lesson.duration || '0:00') + '</span>';
-      html += '        <span>📺 ' + escapeHtml(lesson.channelTitle || 'YouTube') + '</span>';
-      html += '      </div>';
-      html += '    </div>';
-      html += '  </div>';
-      html += '</div>';
+      var title = lesson.videoTitle || lesson.title || 'Sem título';
+      var desc = lesson.description || 'Sem descrição';
+      var duration = lesson.duration || '0:00';
+      var channel = lesson.channelTitle || 'YouTube';
+
+      html +=
+        '<article class="lesson-card" onclick="loadLesson(' + lesson.id + ')" tabindex="0" role="button" aria-label="Abrir lição: ' + escapeHtml(title) + '">' +
+          '<div class="card-thumb">' +
+            '<img src="' + lesson.thumbnail + '" loading="lazy" alt="" onerror="this.src=\'data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22320%22 height=%22180%22><rect fill=%22%231c1c1f%22 width=%22320%22 height=%22180%22/><text x=%2250%25%22 y=%2250%25%22 fill=%22%2371717a%22 font-family=%22sans-serif%22 font-size=%2214%22 text-anchor=%22middle%22 dy=%22.3em%22>Sem prévia</text></svg>\'">' +
+            '<div class="card-play"><span><i class="fa-solid fa-play"></i></span></div>' +
+            '<span class="card-duration">' + escapeHtml(duration) + '</span>' +
+          '</div>' +
+          '<div class="card-body">' +
+            '<h3 class="card-title">' + escapeHtml(title) + '</h3>' +
+            '<p class="card-desc">' + escapeHtml(desc) + '</p>' +
+            '<div class="card-footer">' +
+              '<span><i class="fa-brands fa-youtube"></i> ' + escapeHtml(channel) + '</span>' +
+            '</div>' +
+          '</div>' +
+        '</article>';
     }
     grid.innerHTML = html;
   }
 
+  function renderError(message) {
+    var grid = document.getElementById('lesson-grid');
+    var countEl = document.getElementById('lesson-count');
+    countEl.textContent = '—';
+    grid.innerHTML =
+      '<div class="state-message">' +
+        '<i class="fa-solid fa-triangle-exclamation" style="color: var(--accent);"></i>' +
+        '<h3>Erro ao carregar lições</h3>' +
+        '<p>' + escapeHtml(message) + '</p>' +
+      '</div>';
+  }
+
+  /* ============================================================
+     LOAD LESSON
+  ============================================================ */
   function loadLesson(id) {
-    showLoader(true);
     var lesson = null;
     for (var i = 0; i < lessons.length; i++) {
-      if (lessons[i].id == id) {
-        lesson = lessons[i];
-        break;
-      }
+      if (lessons[i].id == id) { lesson = lessons[i]; break; }
     }
-    
-    if (!lesson) {
-      showLoader(false);
-      return;
-    }
-    
+    if (!lesson) return;
+
     document.getElementById('menu-view').classList.add('hidden');
     document.getElementById('player-view').classList.remove('hidden');
-    document.getElementById('current-title').innerText = lesson.title;
-    document.getElementById('yt-player').src = "https://www.youtube.com/embed/" + lesson.ytId + "?rel=0&autoplay=0";
-    
-    var textWithInputs = lesson.text.replace(/\[(.*?)\]/g, function(match, answer) {
-      return '<input type="text" class="blank-input" data-answer="' + escapeHtml(answer) + '" placeholder="...">';
+
+    document.getElementById('current-title').textContent = lesson.title || '—';
+    document.getElementById('yt-player').src =
+      'https://www.youtube.com/embed/' + lesson.ytId + '?rel=0&autoplay=0';
+
+    var textWithInputs = lesson.text.replace(/\[(.*?)\]/g, function (_m, answer) {
+      return '<input type="text" class="blank-input" data-answer="' +
+        escapeHtml(answer) + '" placeholder="…" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">';
     });
     document.getElementById('exercise-text').innerHTML = textWithInputs;
-    
-    setTimeout(function() { showLoader(false); }, 500);
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  /* ============================================================
+     NAVIGATION
+  ============================================================ */
   function backToMenu() {
     document.getElementById('yt-player').src = '';
-    document.getElementById('menu-view').classList.remove('hidden');
     document.getElementById('player-view').classList.add('hidden');
+    document.getElementById('menu-view').classList.remove('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  function scrollToExercise() {
+    var el = document.querySelector('.exercise-panel');
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  /* ============================================================
+     CHECK / RESET
+  ============================================================ */
   function checkAnswers() {
     var inputs = document.querySelectorAll('.blank-input');
     var correctCount = 0;
-    
+    var filled = 0;
+
     for (var i = 0; i < inputs.length; i++) {
       var input = inputs[i];
       var userVal = input.value.toLowerCase().trim();
-      var correctVal = input.getAttribute('data-answer').toLowerCase().trim();
-      if (userVal !== "") {
-        var isCorrect = (userVal === correctVal);
+      var correctVal = (input.getAttribute('data-answer') || '').toLowerCase().trim();
+
+      if (userVal !== '') {
+        filled++;
+        var isCorrect = userVal === correctVal;
         if (isCorrect) {
           input.classList.add('correct');
           input.classList.remove('incorrect');
@@ -700,8 +1237,12 @@
           input.classList.add('incorrect');
           input.classList.remove('correct');
         }
+      } else {
+        input.classList.remove('correct', 'incorrect');
       }
     }
+
+    showResultModal(correctCount, inputs.length, filled);
   }
 
   function resetTest() {
@@ -712,24 +1253,100 @@
     }
   }
 
-  function showLoader(show) {
-    var loader = document.getElementById('loader');
-    if (show) {
-      loader.classList.add('active');
-    } else {
-      loader.classList.remove('active');
-    }
+  /* ============================================================
+     MODALS
+  ============================================================ */
+  function openModal(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.classList.remove('is-open');
+    document.body.style.overflow = '';
   }
 
+  function showResultModal(correct, total, filled) {
+    var iconBox = document.getElementById('result-icon');
+    var title = document.getElementById('result-title');
+    var message = document.getElementById('result-message');
+    var score = document.getElementById('result-score');
+
+    var pct = total > 0 ? correct / total : 0;
+    var allFilled = filled === total;
+
+    if (pct === 1) {
+      iconBox.className = 'modal-icon success';
+      iconBox.innerHTML = '<i class="fa-solid fa-trophy"></i>';
+      title.textContent = 'Perfeito!';
+      message.textContent = 'Você acertou todas as lacunas. Excelente listening!';
+    } else if (pct >= 0.6) {
+      iconBox.className = 'modal-icon success';
+      iconBox.innerHTML = '<i class="fa-solid fa-thumbs-up"></i>';
+      title.textContent = 'Muito bem!';
+      message.textContent = 'Quase lá — revise as que ficaram em vermelho.';
+    } else if (filled === 0) {
+      iconBox.className = 'modal-icon accent';
+      iconBox.innerHTML = '<i class="fa-solid fa-pen"></i>';
+      title.textContent = 'Bora começar';
+      message.textContent = 'Preencha pelo menos uma lacuna antes de verificar.';
+    } else {
+      iconBox.className = 'modal-icon accent';
+      iconBox.innerHTML = '<i class="fa-solid fa-book-open"></i>';
+      title.textContent = 'Continue treinando';
+      message.textContent = 'Reassista ao vídeo com atenção e tente novamente.';
+    }
+
+    score.innerHTML =
+      '<span class="hit">' + correct + '</span>' +
+      '<span class="sep">/</span>' +
+      '<span class="total">' + total + '</span>';
+
+    openModal('result-modal');
+  }
+
+  function showHintModal() { openModal('hint-modal'); }
+
+  // close on overlay click / ESC
+  document.querySelectorAll('.modal-overlay').forEach(function (overlay) {
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closeModal(overlay.id);
+    });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay.is-open').forEach(function (m) {
+        closeModal(m.id);
+      });
+    }
+  });
+
+  /* ============================================================
+     HELPERS
+  ============================================================ */
   function escapeHtml(str) {
-    if (!str) return '';
-    return str
+    if (str == null) return '';
+    return String(str)
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&#39;');
   }
+
+  // keyboard access on cards
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      var card = document.activeElement;
+      if (card && card.classList && card.classList.contains('lesson-card')) {
+        e.preventDefault();
+        card.click();
+      }
+    }
+  });
 </script>
 </body>
 </html>
